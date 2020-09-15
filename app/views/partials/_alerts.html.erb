@@ -1,2 +1,15 @@
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="ml-2 mr-2">
+  <% if notice %>
+    <div class="materialert info">
+      <i class="material-icons">info_outline</i>
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div class="materialert error">
+      <i class="material-icons">error_outline</i>
+      <%= alert %>
+    </div>
+  <% end %>
+</div>

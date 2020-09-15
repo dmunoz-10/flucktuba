@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+  <ul id="dropdown-user" class="dropdown-content">
+    <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+  </ul>
+<% end %>
+
+<nav>
+  <div class="blue nav-wrapper">
+    <%= link_to 'FluckTuba', root_path, class: 'brand-logo ml-4' %>
+
+    <a href="#" data-target="mobile-sidenav" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <%= render 'partials/navbar/links' %>
+    </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-sidenav">
+  <%= render 'partials/navbar/links' %>
+</ul>
