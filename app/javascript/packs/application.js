@@ -12,9 +12,12 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-document.addEventListener('turbolinks:load', () => {
-  $('.sidenav').sidenav()
-  $('.dropdown-navbar').dropdown()
+$(document).on('turbolinks:load', function() {
+  $('.sidenav').sidenav();
+});
+
+document.addEventListener("turbolinks:before-cache", function() {
+  $('.sidenav').sidenav('destroy');
 });
 
 // Uncomment to copy all static images under ../images to the output folder and reference

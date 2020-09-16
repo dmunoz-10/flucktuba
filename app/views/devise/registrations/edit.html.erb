@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col s12 m4 push-m8 l6 push-l6 xl6 push-xl6">
+    <div class="col s12 m4 push-m8 l6 push-l6 xl6 push-xl6 center-align">
       <h3>Avatar</h3>
 
-      <div class="avatar">
+      <% if current_user.avatar.attached? %>
+        <% image_tag current_user.avatar, class: 'responsive-img', style: 'border-radius: 20%' %>
+      <% else %>
         <%= image_tag "https://api.adorable.io/avatars/100/#{current_user.username}.png", class: 'responsive-img', style: 'border-radius: 20%' %>
-      </div>
+      <% end %>
     </div>
 
     <div class="col s12 m8 pull-m4 l6 pull-l6 xl6 pull-xl6">
-      <h2 class="mb-8">Edit <%= resource_name.to_s.humanize %></h2>
+      <h2 class="mb-8 center-align">Edit <%= resource_name.to_s.humanize %></h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -38,7 +40,7 @@
         </div>
 
         <div class="input-field mb-2">
-          <%= f.label :password_confirmation %><br />
+          <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
