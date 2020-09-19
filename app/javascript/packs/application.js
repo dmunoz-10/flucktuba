@@ -6,6 +6,9 @@
 import '../stylesheets/application'
 import 'materialize-css/dist/js/materialize'
 import 'controllers'
+import {
+  getMetaValue,
+} from 'helpers'
 
 require("@rails/ujs").start()
 require("turbolinks").start()
@@ -13,11 +16,19 @@ require("@rails/activestorage").start()
 require("channels")
 
 $(document).on('turbolinks:load', function() {
-  $('.sidenav').sidenav();
+  $('.sidenav').sidenav()
+  $('select').formSelect();
+
+  const color_theme = getMetaValue('color_theme')
+  if (color_theme == 'dark') {
+    $('.theme').addClass('dark').removeClass('light')
+  } else {
+    $('.theme').addClass('light').removeClass('dark')
+  }
 });
 
 document.addEventListener("turbolinks:before-cache", function() {
-  $('.sidenav').sidenav('destroy');
+  $('.sidenav').sidenav('destroy')
 });
 
 // Uncomment to copy all static images under ../images to the output folder and reference

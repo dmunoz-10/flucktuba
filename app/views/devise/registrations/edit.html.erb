@@ -1,29 +1,58 @@
 <div class="container">
   <div class="row">
-    <div class="col s12 m4 push-m8 l6 push-l6 xl6 push-xl6 center-align">
-      <h3>Avatar</h3>
+    <div class="col s12 m4 push-m8 center-align">
+      <h3>Settings</h3>
 
-      <% if current_user.avatar.attached? %>
-        <% image_tag current_user.avatar, class: 'responsive-img', style: 'border-radius: 20%' %>
-      <% else %>
-        <%= image_tag "https://api.adorable.io/avatars/100/#{current_user.username}.png", class: 'responsive-img', style: 'border-radius: 20%' %>
-      <% end %>
+
+
+      <div class="mt-4">
+        <%= form_with model: current_user.profile, local: true do |form| %>
+          <div class="input-field col s12 theme">
+            <%= select :color_theme,
+                       Profile.color_themes[current_user.profile.color_theme],
+                       select_options(Profile.color_themes.map { |k, v| [k, v] }, 'Choose a theme'),
+                       { class: 'theme', required: true} %>
+            <%= form.label :color_theme %>
+          </div>
+          <%= form.button 'Update settings', class: 'btn waves-effect waves-light blue mt-4' %>
+        <% end %>
+      </div>
     </div>
 
-    <div class="col s12 m8 pull-m4 l6 pull-l6 xl6 pull-xl6">
+    <div class="col s12 m8 pull-m4">
       <h2 class="mb-8 center-align">Edit <%= resource_name.to_s.humanize %></h2>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), multipart: true, html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="row">
+          <div class="col s12 m4 l3 center-align" style="height: 100%">
+            <% if current_user.avatar.attached? %>
+              <% image_tag current_user.avatar, class: 'responsive-img', style: 'border-radius: 20%' %>
+            <% else %>
+              <%= image_tag "https://api.adorable.io/avatars/100/#{current_user.username}.png", class: 'responsive-img', style: 'border-radius: 20%' %>
+            <% end %>
+          </div>
+
+          <div class="col s12 m8 l9 center-align">
+            <div class="dropzone dropzone-default dz-clickable theme" data-controller="dropzone" data-max-file-size="5" data-dropzone-max-files="1">
+              <%= f.file_field :avatar, direct_upload: true, data: { target: 'dropzone.input' } %>
+              <div class="dropzone-msg dz-message needsclick">
+                <h5 class="dropzone-msg-title">Drag here to upload or click here to browse</h5>
+                <span class="dropzone-msg-desc">5 MB file size maximum. Allowed file types png, jpg.</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="input-field">
           <%= f.label :username %>
-          <%= f.text_field :username, autofocus: true, autocomplete: "email" %>
+          <%= f.text_field :username, class: 'theme', autofocus: true, autocomplete: "email" %>
         </div>
 
         <div class="input-field">
           <%= f.label :email %>
-          <%= f.email_field :email, autocomplete: "email" %>
+          <%= f.email_field :email, class: 'theme', autocomplete: "email" %>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -32,7 +61,7 @@
 
         <div class="input-field mb-2">
           <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.password_field :password, class: 'theme', autocomplete: "new-password" %>
           <% if @minimum_password_length %>
             <em><%= @minimum_password_length %> characters minimum</em>
           <% end %>
@@ -41,12 +70,12 @@
 
         <div class="input-field mb-2">
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, class: 'theme', autocomplete: "new-password" %>
         </div>
 
         <div class="input-field mb-2">
           <%= f.label :current_password %>
-          <%= f.password_field :current_password, autocomplete: "current-password" %>
+          <%= f.password_field :current_password, class: 'theme', autocomplete: "current-password" %>
           <i>(we need your current password to confirm your changes)</i>
         </div>
 

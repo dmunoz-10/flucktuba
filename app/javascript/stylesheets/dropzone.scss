@@ -1,0 +1,16 @@
+@import "dropzone/dist/min/dropzone.min.css";
+@import "dropzone/dist/min/basic.min.css";
+
+.dropzone {
+  border: 2px dashed #cbd5e0;
+  border-radius: 0.5rem;
+
+  &.dz-drag-hover {
+    border: 2px dashed #edf2f7;
+    border-radius: 0.5rem;
+
+    &.dz-message {
+      opacity: 0.9;
+    }
+  }
+}
