@@ -1,15 +1,23 @@
-<div class="ml-2 mr-2">
-  <% if notice %>
-    <div class="materialert info">
-      <i class="material-icons">info_outline</i>
-      <%= notice %>
+<% if notice %>
+  <section class="hero is-info">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="subtitle">
+          <%= notice %>
+        </h2>
+      </div>
     </div>
-  <% end %>
+  </section>
+<% end %>
 
-  <% if alert %>
-    <div class="materialert error">
-      <i class="material-icons">error_outline</i>
-      <%= alert %>
+<% if alert %>
+  <section class="hero is-danger">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="subtitle">
+          <%= alert %>
+        </h2>
+      </div>
     </div>
-  <% end %>
-</div>
+  </section>
+<% end %>

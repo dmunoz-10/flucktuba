@@ -6,17 +6,17 @@
     </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
-    <meta name="color_theme" content="<%= current_user&.profile.color_theme || nil %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color_theme" content="<%= current_user && current_user.profile.color_theme || nil %>">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/079ea5cde4.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="theme">
-    <%= render 'partials/navbar/index' %>
+    <%= render 'partials/navbar' %>
 
     <%= render 'partials/alerts' %>
 

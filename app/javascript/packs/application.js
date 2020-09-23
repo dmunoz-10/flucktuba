@@ -4,7 +4,6 @@
 // that code so it'll be compiled.
 
 import '../stylesheets/application'
-import 'materialize-css/dist/js/materialize'
 import 'controllers'
 import {
   getMetaValue,
@@ -16,20 +15,15 @@ require("@rails/activestorage").start()
 require("channels")
 
 $(document).on('turbolinks:load', function() {
-  $('.sidenav').sidenav()
-  $('select').formSelect();
+  $('.navbar-burger').click(function() {
+    $('.navbar-burger').toggleClass('is-active')
+    $('.navbar-menu').toggleClass('is-active')
+  })
+})
 
-  const color_theme = getMetaValue('color_theme')
-  if (color_theme == 'dark') {
-    $('.theme').addClass('dark').removeClass('light')
-  } else {
-    $('.theme').addClass('light').removeClass('dark')
-  }
-});
-
-document.addEventListener("turbolinks:before-cache", function() {
-  $('.sidenav').sidenav('destroy')
-});
+$(document).on('turbolinks:before-cache', function() {
+  $('.navbar-burger').click('destroy')
+})
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

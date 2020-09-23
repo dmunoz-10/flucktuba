@@ -1,40 +1,46 @@
 <div class="container">
-  <div class="row">
-    <div class="col s12 m4 push-m8 center-align">
-      <h3>Settings</h3>
+  <div class="columns is-reverse-tablet mt-5">
+    <div class="column is-12-mobile is-4-tablet is-pulled-right has-text-centered">
+      <h2 class="title is-2">Settings</h2>
 
 
 
       <div class="mt-4">
         <%= form_with model: current_user.profile, local: true do |form| %>
-          <div class="input-field col s12 theme">
-            <%= select :color_theme,
-                       Profile.color_themes[current_user.profile.color_theme],
-                       select_options(Profile.color_themes.map { |k, v| [k, v] }, 'Choose a theme'),
-                       { class: 'theme', required: true} %>
-            <%= form.label :color_theme %>
+          <div class="field">
+            <div class="control has-icons-left">
+              <div class="select">
+                <%= select :color_theme,
+                           Profile.color_themes[current_user.profile.color_theme],
+                           select_options(Profile.color_themes.map { |k, v| [k, v] }, 'Choose a theme'),
+                           { class: 'theme', required: true} %>
+                <div class="icon is-small is-left">
+                  <i class="fas fa-palette"></i>
+                </div>
+              </div>
+            </div>
           </div>
-          <%= form.button 'Update settings', class: 'btn waves-effect waves-light blue mt-4' %>
+          <%= form.button 'Update settings', class: 'button is-link mt-4' %>
         <% end %>
       </div>
     </div>
 
-    <div class="col s12 m8 pull-m4">
-      <h2 class="mb-8 center-align">Edit <%= resource_name.to_s.humanize %></h2>
+    <div class="column is-12-mobile is-8-tablet is-pulled-left">
+      <h2 class="title is-2">Edit <%= resource_name.to_s.humanize %></h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), multipart: true, html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="row">
-          <div class="col s12 m4 l3 center-align" style="height: 100%">
+        <div class="columns">
+          <div class="column is-12-mobile is-4-tablet is-3-desktop has-text-centered">
             <% if current_user.avatar.attached? %>
-              <% image_tag current_user.avatar, class: 'responsive-img', style: 'border-radius: 20%' %>
+              <% image_tag current_user.avatar, class: 'image is-96x96', style: 'border-radius: 20%' %>
             <% else %>
-              <%= image_tag "https://api.adorable.io/avatars/100/#{current_user.username}.png", class: 'responsive-img', style: 'border-radius: 20%' %>
+              <%= image_tag "https://api.adorable.io/avatars/96/#{current_user.username}.png", class: 'image is-96x96', style: 'border-radius: 20%' %>
             <% end %>
           </div>
 
-          <div class="col s12 m8 l9 center-align">
+          <div class="column is-12-mobile is-8-tablet is-9-desktop has-text-centered">
             <div class="dropzone dropzone-default dz-clickable theme" data-controller="dropzone" data-max-file-size="5" data-dropzone-max-files="1">
               <%= f.file_field :avatar, direct_upload: true, data: { target: 'dropzone.input' } %>
               <div class="dropzone-msg dz-message needsclick">
@@ -45,46 +51,95 @@
           </div>
         </div>
 
-        <div class="input-field">
-          <%= f.label :username %>
-          <%= f.text_field :username, class: 'theme', autofocus: true, autocomplete: "email" %>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :username, class: 'label' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= f.text_field :username, class: 'input', autofocus: true, autocomplete: "username" %>
+                <span class="icon is-left"><i class="fas fa-user"></i></span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="input-field">
-          <%= f.label :email %>
-          <%= f.email_field :email, class: 'theme', autocomplete: "email" %>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :email, class: 'label' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= f.email_field :email, class: 'input', autocomplete: "email" %>
+                <span class="icon is-left"><i class="fas fa-envelope"></i></span>
+              </p>
+            </div>
+          </div>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
 
-        <div class="input-field mb-2">
-          <%= f.label :password %>
-          <%= f.password_field :password, class: 'theme', autocomplete: "new-password" %>
-          <% if @minimum_password_length %>
-            <em><%= @minimum_password_length %> characters minimum</em>
-          <% end %>
-          <i>(leave blank if you don't want to change it)</i>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :password, class: 'label' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= f.password_field :password, class: 'input', autocomplete: "new-password" %>
+                <span class="icon is-left"><i class="fas fa-lock"></i></span>
+              </p>
+              <p class="help">
+                <% if @minimum_password_length %>
+                  <em><%= @minimum_password_length %> characters minimum</em>
+                <% end %>
+                <i>(leave blank if you don't want to change it)</i>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="input-field mb-2">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, class: 'theme', autocomplete: "new-password" %>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :password_confirmation, class: 'label is-capitalized' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= f.password_field :password_confirmation, class: 'input', autocomplete: "new-password" %>
+                <span class="icon is-left"><i class="fas fa-lock"></i></span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="input-field mb-2">
-          <%= f.label :current_password %>
-          <%= f.password_field :current_password, class: 'theme', autocomplete: "current-password" %>
-          <i>(we need your current password to confirm your changes)</i>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :current_password, class: 'label is-capitalized' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= f.password_field :current_password, class: 'input', autocomplete: "current-password" %>
+                <span class="icon is-left"><i class="fas fa-lock"></i></span>
+              </p>
+              <p class="help">
+                <i>(we need your current password to confirm your changes)</i>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <%= f.button 'Update', class: 'btn waves-effect waves-light blue mt-2' %>
+        <%= f.button 'Update', class: 'button is-success my-2' %>
       <% end %>
 
-      <h3>Cancel my account</h3>
+      <h4 class="title is-4 mt-4">Cancel my account</h4>
 
-      <p>Unhappy? <%= button_to 'Cancel my account', registration_path(resource_name), class: 'btn red', data: { confirm: 'Are you sure?' }, method: :delete %></p>
+      <p>Unhappy? <%= button_to 'Cancel my account', registration_path(resource_name), class: 'button is-danger is-outlined', data: { confirm: 'Are you sure?' }, method: :delete %></p>
 
       <%= link_to 'Back', :back %>
     </div>

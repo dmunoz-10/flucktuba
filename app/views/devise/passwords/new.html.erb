@@ -1,17 +1,26 @@
 <div class="container">
-  <div class="row">
-    <div class="col s12 m10 offset-m1 l8 offset-l2 xl6 offset-xl3 center-align">
-      <h3 class="mb-8">Forgot your password?</h3>
+  <div class="columns">
+    <div class="column is-12-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-2-desktop is-6-widescreen is-offset-3-widescreen has-text-centered">
+      <h3 class="title is-1 mb-8">Forgot your password?</h3>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="input-field">
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :email, class: 'label' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= f.email_field :email, class: 'input', autofocus: true, autocomplete: "email" %>
+                <span class="icon is-left"><i class="fas fa-envelope"></i></span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <%= f.button 'Send me reset password instructions', class: 'btn waves-effect waves-light blue' %>
+        <%= f.button 'Send me reset password instructions', class: 'button is-link' %>
       <% end %>
 
       <div class="mt-2">

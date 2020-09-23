@@ -1,32 +1,85 @@
 <div class="container">
-  <div class="row">
-    <div class="col s12 m10 offset-m1 l8 offset-l2 xl6 offset-xl3 center-align">
-      <h2>Sign up</h2>
+  <div class="columns">
+    <div class="column is-12-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-2-desktop is-6-widescreen is-offset-3-widescreen has-text-centered">
+      <h2 class="title is-1">Sign up</h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="input-field col s12 mb-2">
-          <%= f.label :username %>
-          <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :username, class: 'label' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= f.text_field :username,
+                                 class: 'input',
+                                 autofocus: true,
+                                 required: true,
+                                 placeholder: 'user_name',
+                                 autocomplete: 'username' %>
+                <span class="icon is-left"><i class="fas fa-user"></i></span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="input-field col s12 mb-2">
-          <%= f.label :email %>
-          <%= f.email_field :email, autocomplete: "email" %>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :email, class: 'label' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= f.email_field :email,
+                                  class: 'input',
+                                  required: true,
+                                  placeholder: 'email@example.com',
+                                  autocomplete: 'email' %>
+                <span class="icon is-left"><i class="fas fa-envelope"></i></span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="input-field col s12 mb-2">
-          <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "new-password" %>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :password, class: 'label' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= f.password_field :password,
+                                     class: 'input',
+                                     required: true,
+                                     placeholder: 'password',
+                                     autocomplete: 'new-password' %>
+                <span class="icon is-left"><i class="fas fa-lock"></i></span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="input-field col s12 mb-2">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <div class="field is-horizontal column is-12 my-2">
+          <div class="field-label is-normal">
+            <%= f.label :password_confirmation, class: 'label is-capitalized' %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <%= f.password_field :password_confirmation,
+                                     class: 'input',
+                                     required: true,
+                                     placeholder: 'password',
+                                     autocomplete: 'new-password' %>
+                <span class="icon is-left"><i class="fas fa-lock"></i></span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        <%= f.button 'Sign up', class: 'btn waves-effect waves-light blue mt-4' %>
+        <%= f.button 'Sign up', class: 'button is-link mt-4' %>
       <% end %>
 
       <div class="mt-2">
