@@ -19,6 +19,29 @@ $(document).on('turbolinks:load', function() {
     $('.navbar-burger').toggleClass('is-active')
     $('.navbar-menu').toggleClass('is-active')
   })
+
+  function change_theme_local_storage() {
+    const theme = localStorage.getItem('theme')
+    if (theme == 'dark') {
+      $('body').removeClass('light').addClass('dark')
+    } else {
+      $('body').addClass('light').removeClass('dark')
+    }
+  }
+
+  if (getMetaValue('is_user') == '0' && localStorage.getItem('theme') == 'dark') {
+    $('#switchDarkMode').prop('checked', true);
+    change_theme_local_storage()
+  }
+
+  $('#switchDarkMode').click(function () {
+    if($(this).is(':checked')) {
+      localStorage.setItem('theme', 'dark')
+    } else {
+      localStorage.setItem('theme', 'light')
+    }
+    change_theme_local_storage()
+  })
 })
 
 $(document).on('turbolinks:before-cache', function() {

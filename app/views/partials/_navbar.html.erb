@@ -28,6 +28,10 @@
       <% else %>
         <%= link_to 'Sign up', new_user_registration_path, class: 'navbar-item' %>
         <%= link_to 'Sign in', user_session_path, class: 'navbar-item' %>
+        <div class="field navbar-item">
+          <input id="switchDarkMode" type="checkbox" name="switchDarkMode" class="switch is-rounded">
+          <label for="switchDarkMode">Dark mode</label>
+        </div>
       <% end %>
     </div>
   </div>

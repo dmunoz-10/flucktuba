@@ -1,0 +1,9 @@
+:root {
+  --navbar-background-color: white;
+}
+
+.dark {
+  --navbar-background-color: gray;
+}
+
+$navbar-background-color: var(--navbar-background-color);
