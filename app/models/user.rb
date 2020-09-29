@@ -20,6 +20,6 @@ class User < ApplicationRecord
   private
 
   def create_profile
-    Profile.create!(user: self, color_theme: :light)
+    Profile.create!(user: self)
   end
 end

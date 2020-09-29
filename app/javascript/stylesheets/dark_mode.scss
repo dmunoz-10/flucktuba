@@ -39,6 +39,9 @@ $navbar-dropdown-item-hover-color: var(--color);
 $navbar-divider-background-color: var(--background-color);
 $navbar-dropdown-arrow: var(--color);
 
+// HERO
+$hero-body-padding: 2rem 1rem;
+
 // LABEL
 $label-color: var(--color);
 
@@ -48,6 +51,9 @@ $label-color: var(--color);
 }
 input {
   color: var(--color-secondary) !important;
+}
+select {
+  color: var(--color) !important;
 }
 $input-background-color: var(--background-color);
 $input-hover-color: var(--color);

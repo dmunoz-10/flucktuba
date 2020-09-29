@@ -1,0 +1,5 @@
+<% if user.avatar.attached? %>
+  <%= image_tag user.avatar, class: "image is-#{size}x#{size}", style: 'border-radius: 20%' %>
+<% else %>
+  <%= image_tag "https://api.adorable.io/avatars/#{size}/#{user.username}.png", class: "image is-#{size}x#{size}", style: 'border-radius: 20%' %>
+<% end %>

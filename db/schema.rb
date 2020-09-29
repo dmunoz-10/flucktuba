@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 2020_09_17_041332) do
 
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "color_theme"
+    t.integer "color_theme", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
