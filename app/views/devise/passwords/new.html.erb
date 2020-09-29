@@ -1,6 +1,6 @@
 <div class="container">
   <div class="columns">
-    <div class="column is-12-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-2-desktop is-6-widescreen is-offset-3-widescreen has-text-centered">
+    <div class="column is-12-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-2-desktop is-6-widescreen is-offset-3-widescreen has-text-centered mt-6">
       <h3 class="title is-1 mb-8">Forgot your password?</h3>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -13,7 +13,12 @@
           <div class="field-body">
             <div class="field">
               <p class="control has-icons-left">
-                <%= f.email_field :email, class: 'input', autofocus: true, autocomplete: "email" %>
+                <%= f.email_field :email,
+                                  class: 'input',
+                                  autofocus: true,
+                                  required: true,
+                                  placeholder: 'email@example.com',
+                                  autocomplete: 'email' %>
                 <span class="icon is-left"><i class="fas fa-envelope"></i></span>
               </p>
             </div>

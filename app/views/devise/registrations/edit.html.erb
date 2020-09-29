@@ -1,6 +1,6 @@
 <div class="container">
   <div class="columns is-reverse-tablet mt-5">
-    <div class="column is-12-mobile is-4-tablet is-pulled-right has-text-centered">
+    <div class="column is-12-mobile is-4-tablet is-pulled-right has-text-centered mt-6">
       <h2 class="title is-2">Settings</h2>
 
 
@@ -27,28 +27,27 @@
     </div>
 
     <div class="column is-12-mobile is-8-tablet is-pulled-left">
-      <h2 class="title is-2">Edit <%= resource_name.to_s.humanize %></h2>
+      <h2 class="title is-2 has-text-centered">Edit <%= resource_name.to_s.humanize %></h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), multipart: true, html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="columns">
-          <div class="column is-12-mobile is-4-tablet is-3-desktop has-text-centered">
-            <% if current_user.avatar.attached? %>
-              <% image_tag current_user.avatar, class: 'image is-96x96', style: 'border-radius: 20%' %>
-            <% else %>
-              <%= image_tag "https://api.adorable.io/avatars/96/#{current_user.username}.png", class: 'image is-96x96', style: 'border-radius: 20%' %>
-            <% end %>
+          <div class="column is-12-mobile is-4-tablet is-3-desktop">
+            <div class="columns is-centered">
+              <div class="column is-10">
+                <h4 class="subtitle is-4">Avatar</h4>
+                <% if current_user.avatar.attached? %>
+                  <%= image_tag current_user.avatar, class: 'image is-96x96', style: 'border-radius: 20%' %>
+                <% else %>
+                  <%= image_tag "https://api.adorable.io/avatars/96/#{current_user.username}.png", class: 'image is-96x96', style: 'border-radius: 20%' %>
+                <% end %>
+              </div>
+            </div>
           </div>
 
           <div class="column is-12-mobile is-8-tablet is-9-desktop has-text-centered">
-            <div class="dropzone dropzone-default dz-clickable theme" data-controller="dropzone" data-max-file-size="5" data-dropzone-max-files="1">
-              <%= f.file_field :avatar, direct_upload: true, data: { target: 'dropzone.input' } %>
-              <div class="dropzone-msg dz-message needsclick">
-                <h5 class="dropzone-msg-title">Drag here to upload or click here to browse</h5>
-                <span class="dropzone-msg-desc">5 MB file size maximum. Allowed file types png, jpg.</span>
-              </div>
-            </div>
+            <%= render partial: 'partials/dropzone', locals: { f: f, file: :avatar, max_file_size: 5, max_files: 1 } %>
           </div>
         </div>
 
@@ -135,14 +134,17 @@
           </div>
         </div>
 
-        <%= f.button 'Update', class: 'button is-success my-2' %>
+        <div class="mt-4 has-text-centered">
+          <%= f.button 'Update', class: 'button is-success' %>
+        </div>
       <% end %>
 
-      <h4 class="title is-4 mt-4">Cancel my account</h4>
-
-      <p>Unhappy? <%= button_to 'Cancel my account', registration_path(resource_name), class: 'button is-danger is-outlined', data: { confirm: 'Are you sure?' }, method: :delete %></p>
-
-      <%= link_to 'Back', :back %>
+      <div class="mt-5">
+        <h4 class="title is-4 mb-1">Cancel my account</h4>
+        <p class="mt-4 mb-2">Unhappy?</p>
+        <%= button_to 'Cancel my account', registration_path(resource_name), class: 'button is-danger is-outlined mb-2', data: { confirm: 'Are you sure?' }, method: :delete %>
+        <%= link_to 'Back', :back, class: 'is-link' %>
+      </div>
     </div>
   </div>
 </div>

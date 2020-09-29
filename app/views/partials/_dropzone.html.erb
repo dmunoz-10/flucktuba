@@ -1,0 +1,12 @@
+<div
+  class="dropzone dropzone-default dz-clickable"
+  data-controller="dropzone"
+  data-max-file-size="<%= max_file_size %>"
+  data-dropzone-max-files="<%= max_files %>"
+>
+  <%= f.file_field file, direct_upload: true, data: { target: 'dropzone.input' } %>
+  <div class="dropzone-msg dz-message needsclick">
+    <h5 class="dropzone-msg-title">Drag here to upload or click here to browse</h5>
+    <span class="dropzone-msg-desc"><%= max_file_size %> MB file size maximum. Allowed file types png, jpg.</span>
+  </div>
+</div>

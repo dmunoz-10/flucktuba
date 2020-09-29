@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
   <head>
     <title>
       <%= "#{yield :title} - " if content_for :title %>Flucktuba
@@ -7,7 +7,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="is_user" content="<%= current_user && 1 || '0' %>">
+    <meta name="is_user" content="<%= current_user && 1 || 0 %>">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -15,11 +15,16 @@
     <script src="https://kit.fontawesome.com/079ea5cde4.js" crossorigin="anonymous"></script>
   </head>
 
-  <body class="<%= current_user && current_user.profile.color_theme || 'light' %>">
-    <%= render 'partials/navbar' %>
+  <body class="<%= current_user && current_user.profile.color_theme || 'light' %>"
+        style="display: flex; flex-direction: column;">
+    <div style="flex: 1 0 auto;">
+      <%= render 'partials/navbar' %>
 
-    <%= render 'partials/alerts' %>
+      <%= render 'partials/alerts' %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
+
+    <%= render 'partials/footer' %>
   </body>
 </html>

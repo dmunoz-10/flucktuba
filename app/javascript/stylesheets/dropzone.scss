@@ -2,15 +2,26 @@
 @import "dropzone/dist/min/basic.min.css";
 
 .dropzone {
-  border: 2px dashed #cbd5e0;
+  background-color: var(--background-color);
+  color: var(--color);
+  border: 2px dashed var(--color);
   border-radius: 0.5rem;
 
   &.dz-drag-hover {
-    border: 2px dashed #edf2f7;
+    border: 2px dashed var(--color-secondary);
     border-radius: 0.5rem;
 
     &.dz-message {
       opacity: 0.9;
+    }
+  }
+
+  .dz-preview {
+    background-color: var(--background-color) !important;
+    color: var(--color) !important;
+
+    .dz-remove {
+      color: var(--color) !important;
     }
   }
 }

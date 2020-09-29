@@ -1,9 +1,62 @@
 :root {
-  --navbar-background-color: white;
+  --background-color: #FFFFFF;
+  --background-color-secondary: #DAE0E6;
+  --color: #363636;
+  --color-secondary: #181818;
 }
 
-.dark {
-  --navbar-background-color: gray;
+body.dark {
+  --background-color: #181818;
+  --background-color-secondary: #323232;
+  --color: #FFFFFF;
+  --color-secondary: #DAE0E6;
 }
 
-$navbar-background-color: var(--navbar-background-color);
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+/* ---------- BULMA VARIABLES ---------- */
+
+// TEXT COLOR
+$text: var(--color);
+$title-color: var(--color);
+$subtitle-color: var(--color);
+$text-light: var(--color);
+
+// BORDER
+$border: var(--background-color-secondary);
+
+// NAVBAR
+$navbar-background-color: var(--background-color-secondary);
+$navbar-item-color: var(--color);
+$navbar-item-hover-color: var(--color);
+$navbar-item-hover-background-color: var(--background-color);
+$navbar-dropdown-background-color: var(--background-color-secondary);
+$navbar-dropdown-item-hover-background-color: var(--background-color);
+$navbar-dropdown-item-hover-color: var(--color);
+$navbar-divider-background-color: var(--background-color);
+$navbar-dropdown-arrow: var(--color);
+
+// LABEL
+$label-color: var(--color);
+
+// INPUT
+::placeholder {
+  color: var(--color);
+}
+input {
+  color: var(--color-secondary) !important;
+}
+$input-background-color: var(--background-color);
+$input-hover-color: var(--color);
+$input-hover-border-color: var(--color);
+$input-focus-color: var(--color);
+$input-focus-border-color: var(--color);
+
+// FOOTER
+$footer-background-color: var(--background-color);
+$footer-padding: 2rem 1rem;
+
+/* -------- END BULMA VARIABLES -------- */
