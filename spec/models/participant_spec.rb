@@ -13,10 +13,10 @@ RSpec.describe Participant, type: :model do
     it 'must be unique per fluck' do
       user = create(:user)
       fluck = create(:fluck)
-      participant = create(:participant, user: user, fluck: fluck)
-      participant2 = build(:participant, user: user, fluck: fluck)
-      participant2.save
-      expect(participant2.errors[:user]).to include('is already a participant of this fluck')
+      create(:participant, user: user, fluck: fluck)
+      participant = build(:participant, user: user, fluck: fluck)
+      participant.save
+      expect(participant.errors[:user]).to include('is already a participant of this fluck')
     end
   end
 

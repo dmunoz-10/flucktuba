@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ProfilePolicy, type: :policy do
-  let(:user) { create(:user) }
+  subject(:profile_policy) { described_class }
 
-  subject { described_class }
+  let(:user) { create(:user) }
 
   permissions :update? do
     it 'grants access' do
-      expect(subject).to permit(user, user.profile)
+      expect(profile_policy).to permit(user, user.profile)
     end
   end
 end

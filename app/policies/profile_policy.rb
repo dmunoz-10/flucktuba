@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Profile Policy
 class ProfilePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve

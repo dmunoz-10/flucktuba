@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Profile Model
 class Profile < ApplicationRecord
   belongs_to :user
 
@@ -10,8 +13,8 @@ class Profile < ApplicationRecord
 
   def one_profile_per_user
     profile = Profile.find_by(user: user)
-     if profile && profile != self
-       errors.add(:user, 'already has a profile')
-     end
+    return unless profile && profile != self
+
+    errors.add(:user, 'already has a profile')
   end
 end

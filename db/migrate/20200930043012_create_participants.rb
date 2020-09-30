@@ -7,5 +7,7 @@ class CreateParticipants < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :participants, [:user_id, :fluck_id], unique: true
   end
 end
