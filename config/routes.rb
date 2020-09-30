@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  resource :profile
+  resources :users, only: :show do
+    delete :remove_avatar, on: :collection
+  end
+  resource :profile, only: :update
 
   root to: 'pages#home'
 end

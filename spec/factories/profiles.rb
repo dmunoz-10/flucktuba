@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :profile do
     user { nil }
-    color_theme { 1 }
+    color_theme { 'light' }
   end
 end

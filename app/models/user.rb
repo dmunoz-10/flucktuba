@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one :profile
 
+  before_validation { self.email = email.downcase if email.present? }
   before_validation { self.username = username.downcase if username.present? }
   after_create :create_profile
 

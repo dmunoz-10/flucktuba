@@ -3,9 +3,10 @@
 # Profiles Controller
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_profile
 
   def update
-    if current_user.profile.update(profile_params)
+    if @profile.update(profile_params)
       redirect_to edit_user_registration_path, notice: 'Settings has changed!'
     else
       redirect_to edit_user_registration_path, alert: 'There was an error'
@@ -16,5 +17,9 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:color_theme)
+  end
+
+  def set_profile
+    @profile = authorize current_user.profile
   end
 end
