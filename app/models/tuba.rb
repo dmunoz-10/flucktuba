@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Participant Model
-class Participant < ApplicationRecord
+# Tuba Model
+class Tuba < ApplicationRecord
   before_validation :default_role
 
   belongs_to :user
@@ -13,7 +13,7 @@ class Participant < ApplicationRecord
 
   validates :user, uniqueness: {
     scope: :fluck,
-    message: 'is already a participant of this fluck'
+    message: 'is already a tuba of this fluck'
   }
 
   private

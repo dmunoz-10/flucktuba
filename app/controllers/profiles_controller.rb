@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:color_theme)
+    params.require(:profile).permit(:color_theme, :primary_color)
   end
 
   def set_profile

@@ -2,8 +2,8 @@
 
 # Fluck Model
 class Fluck < ApplicationRecord
-  has_many :participants, dependent: :destroy
-  has_many :users, through: :participants
+  has_many :tubas, dependent: :destroy
+  has_many :users, through: :tubas
 
   validates :name, presence: true
 end

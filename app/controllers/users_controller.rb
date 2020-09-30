@@ -16,6 +16,6 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = authorize User.find(params[:id])
+    @user = authorize User.find_by(username: params[:id])
   end
 end

@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  resources :users, only: :show do
-    delete :remove_avatar, on: :collection
+  resources :users, path: '/t', only: :show do
+    scope '/users' do
+      delete :remove_avatar, on: :collection
+    end
   end
   resource :profile, only: :update
 

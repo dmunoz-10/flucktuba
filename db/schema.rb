@@ -74,23 +74,24 @@ ActiveRecord::Schema.define(version: 2020_09_30_043012) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "participants", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "color_theme", default: 0, null: false
+    t.string "primary_color", default: "#4a86e8", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "tubas", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "fluck_id", null: false
     t.integer "role", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["fluck_id"], name: "index_participants_on_fluck_id"
-    t.index ["user_id", "fluck_id"], name: "index_participants_on_user_id_and_fluck_id", unique: true
-    t.index ["user_id"], name: "index_participants_on_user_id"
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.integer "color_theme", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.index ["fluck_id"], name: "index_tubas_on_fluck_id"
+    t.index ["user_id", "fluck_id"], name: "index_tubas_on_user_id_and_fluck_id", unique: true
+    t.index ["user_id"], name: "index_tubas_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -105,7 +106,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_043012) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.string "username"
-    t.boolean "admin", default: false
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -114,7 +115,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_043012) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "participants", "flucks"
-  add_foreign_key "participants", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "tubas", "flucks"
+  add_foreign_key "tubas", "users"
 end

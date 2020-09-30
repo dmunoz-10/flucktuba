@@ -49,7 +49,7 @@ $label-color: var(--color);
 ::placeholder {
   color: var(--color);
 }
-input {
+input, textarea {
   color: var(--color-secondary) !important;
 }
 select {
@@ -74,10 +74,9 @@ a {
   }
 }
 
-// DROPDOWN
-$dropdown-item-color: var(--color);
-// $dropdown-content-arrow: var(--color);
-// $dropdown-item-active-background-color: var(--color);
+// CARD
+$card-color: var(--color);
+$card-background-color: var(--background-color);
 
 // FOOTER
 $footer-background-color: var(--background-color);

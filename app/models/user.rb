@@ -9,8 +9,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_one :profile, dependent: :destroy
-  has_many :participants, dependent: :destroy
-  has_many :flucks, through: :participants
+  has_many :tubas, dependent: :destroy
+  has_many :flucks, through: :tubas
 
   before_validation { self.email = email.downcase if email.present? }
   before_validation { self.username = username.downcase if username.present? }
