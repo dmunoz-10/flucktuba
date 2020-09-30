@@ -3,8 +3,6 @@
     <div class="column is-12-mobile is-4-tablet is-pulled-right has-text-centered mt-6">
       <h2 class="title is-2">Settings</h2>
 
-
-
       <div class="mt-4">
         <%= form_with model: current_user.profile, local: true, method: :put do |form| %>
           <div class="field">
@@ -40,7 +38,7 @@
               <%= render partial: 'partials/user_avatar', locals: { user: current_user, size: 96 } %>
             </div>
 
-            <% if current_user.avatar.attached? %>
+            <% if policy(current_user).remove_avatar? %>
               <%= button_to remove_avatar_users_path, class: 'button is-text', data: { confirm: 'Are you sure?' }, method: :delete do %>
                 Remove avatar
               <% end %>
