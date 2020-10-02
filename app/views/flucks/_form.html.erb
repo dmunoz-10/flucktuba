@@ -1,0 +1,87 @@
+<%= form_with model: fluck, local: true do |form| %>
+  <% if fluck.errors.size > 0 %>
+    <section class="hero is-danger" style="border-radius: 5px">
+      <div class="hero-body">
+        <div class="container content">
+          <ul class="mt-0">
+            <% fluck.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </section>
+  <% end %>
+
+  <div class="field my-3">
+    <%= form.label :name, class: 'label' %>
+    <div class="control has-icons-left">
+      <%= form.text_field :name, class: 'input', autofocus: true, autocomplete: 'name' %>
+      <span class="icon is-left"><i class="fas fa-signature"></i></span>
+    </div>
+  </div>
+
+  <div class="field my-3">
+    <%= form.label :nickname, class: 'label' %>
+    <div class="control has-icons-left">
+      <%= form.text_field :nickname, class: 'input', autocomplete: 'nickname' %>
+      <span class="icon is-left"><i class="fas fa-qrcode"></i></span>
+    </div>
+  </div>
+
+  <div class="field my-3">
+    <%= form.label :description, class: 'label' %>
+    <p class="control has-icons-left">
+      <%= form.text_area :description, class: 'input', style:'height: 100px; resize: none', maxlength: 300 %>
+      <span class="icon is-left"><i class="fas fa-align-justify"></i></span>
+    </p>
+  </div>
+
+  <div class="columns is-vcentered is-centered">
+    <div class="column is-12-mobile is-6-tablet">
+      <div class="field">
+        <div class="file is-info is-boxed has-name">
+          <label class="file-label" style="width: 100%">
+            <%= form.file_field :image, class: 'file-input', file_name_id: 'image_name', accept: 'image/*' %>
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Image
+              </span>
+            </span>
+            <span id="image_name" class="file-name has-text-centered">
+              No file uploaded
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-12-mobile is-6-tablet">
+      <div class="field">
+        <div class="file is-success is-boxed has-name">
+          <label class="file-label" style="width: 100%">
+            <%= form.file_field :banner, class: 'file-input', file_name_id: 'banner_name', accept: 'image/*' %>
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Banner
+              </span>
+            </span>
+            <span id="banner_name" class="file-name has-text-centered">
+              No file uploaded
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="has-text-centered">
+    <%= form.button 'Create', class: 'button is-link mt-4' %>
+  </div>
+<% end %>

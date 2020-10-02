@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   end
   resource :profile, only: :update
 
+  resources :flucks, except: %i[show index]
+
+  get '/:id', to: 'flucks#show', as: :show_flucks
+
   root to: 'pages#home'
 end

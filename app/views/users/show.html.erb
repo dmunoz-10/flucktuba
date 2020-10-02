@@ -1,28 +1,51 @@
-<div class="container" style="height: 75vh">
+<div class="container">
   <div class="columns mt-5">
     <div class="column is-12-mobile is-4-tablet">
-      <div
-        class="card"
-        style="box-shadow: 0 0.5em 1em -0.125em <%= @user.profile.primary_color %>20, 0 0px 0 1px <%= @user.profile.primary_color %>10 !important;
-               border-top: 13px <%= @user.profile.primary_color %> solid; border-radius: 5px 5px 0 0;"
-      >
-        <div class="card-content">
-          <div class="media">
-            <div class="media-left">
-              <%= render partial: 'partials/user_avatar', locals: { user: @user, size: 52 } %>
-            </div>
-            <div class="media-content">
-              <p class="title is-4"><%= @user.username %></p>
-              <p class="subtitle is-6"><%= "t/#{@user.username}" %></p>
-            </div>
-          </div>
-
-          <div class="content">
-            <div class="mb-2">
-              <%= @user.description if @user.description.present? %>
+      <div style="position: sticky; top: 30px;">
+        <div
+          class="card"
+          style="box-shadow: 0 0.5em 1em -0.125em <%= @user.profile.primary_color %>20, 0 0px 0 1px <%= @user.profile.primary_color %>10 !important;
+                 border-top: 13px <%= @user.profile.primary_color %> solid; border-radius: 5px 5px 0 0;">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <%= render partial: 'partials/user_avatar', locals: { user: @user, size: 52 } %>
+              </div>
+              <div class="media-content">
+                <p class="title is-4"><%= @user.username %></p>
+                <p class="subtitle is-6"><%= "t/#{@user.username}" %></p>
+              </div>
             </div>
 
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            <div class="content">
+              <div class="mb-2">
+                <%= @user.description if @user.description.present? %>
+              </div>
+
+              <div class="tile is-ancestor my-1">
+                <div class="tile is-parent">
+                  <p class="tile is-child">22 followers</p>
+                </div>
+
+                <div class="tile is-parent">
+                  <p class="tile is-child">22 posts</p>
+                </div>
+              </div>
+
+              <div class="tile is-ancestor my-1">
+                <div class="tile is-parent">
+                  <a href="#" class="button is-link">Follow</a>
+                </div>
+
+                <div class="tile is-parent">
+                  <a href="#" class="button is-dark">Message</a>
+                </div>
+
+                <div class="tile is-parent">
+                  <a href="#" class="button is-danger is-outlined">Block</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

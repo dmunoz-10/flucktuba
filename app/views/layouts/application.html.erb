@@ -16,8 +16,8 @@
   </head>
 
   <body class="<%= current_user && current_user.profile.color_theme || 'light' %>"
-        style="display: flex; flex-direction: column;">
-    <div style="flex: 1 0 auto;">
+        style="min-height: 100%; display: grid; grid-template-rows: 1fr auto;">
+    <div>
       <%= render 'partials/navbar' %>
 
       <%= render 'partials/alerts' %>

@@ -68,10 +68,12 @@ ActiveRecord::Schema.define(version: 2020_09_30_043012) do
   end
 
   create_table "flucks", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
+    t.string "nickname", null: false
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["nickname"], name: "index_flucks_on_nickname", unique: true
   end
 
   create_table "profiles", force: :cascade do |t|

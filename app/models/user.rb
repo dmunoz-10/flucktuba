@@ -19,6 +19,7 @@ class User < ApplicationRecord
   USERNAME_REGEXP = /\A(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}\z/.freeze
 
   validates :username, presence: true, format: { with: USERNAME_REGEXP }, uniqueness: true
+  validates :description, length: { maximum: 300 }, allow_blank: true
 
   private
 

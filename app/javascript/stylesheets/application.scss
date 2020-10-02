@@ -3,3 +3,13 @@
 @import '../../../node_modules/bulma-extensions/src/sass/index.sass';
 @import 'helpers';
 @import 'dropzone';
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: gray;
+}

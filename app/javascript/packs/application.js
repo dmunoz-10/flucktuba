@@ -42,6 +42,16 @@ $(document).on('turbolinks:load', function() {
     }
     change_theme_local_storage()
   })
+
+  $('.file-input').change(function () {
+    const file_name_id = $(this).attr('file_name_id')
+    if($(this).get(0).files.length === 1) {
+      const file_name = $(this).get(0).files[0].name
+      $(`#${file_name_id}`).text(file_name).attr('title', file_name)
+    } else {
+      $(`#${file_name_id}`).text('No file uploaded').attr('title', '')
+    }
+  })
 })
 
 $(document).on('turbolinks:before-cache', function() {
