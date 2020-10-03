@@ -16,7 +16,7 @@
   <div class="field my-3">
     <%= form.label :name, class: 'label' %>
     <div class="control has-icons-left">
-      <%= form.text_field :name, class: 'input', autofocus: true, autocomplete: 'name' %>
+      <%= form.text_field :name, class: 'input', autofocus: true, autocomplete: 'name', required: true %>
       <span class="icon is-left"><i class="fas fa-signature"></i></span>
     </div>
   </div>
@@ -42,7 +42,7 @@
       <div class="field">
         <div class="file is-info is-boxed has-name">
           <label class="file-label" style="width: 100%">
-            <%= form.file_field :image, class: 'file-input', file_name_id: 'image_name', accept: 'image/*' %>
+            <%= form.file_field :image, class: 'file-input', file_name_id: 'image_name', required: true, accept: 'image/*' %>
             <span class="file-cta">
               <span class="file-icon">
                 <i class="fas fa-upload"></i>
@@ -63,7 +63,7 @@
       <div class="field">
         <div class="file is-success is-boxed has-name">
           <label class="file-label" style="width: 100%">
-            <%= form.file_field :banner, class: 'file-input', file_name_id: 'banner_name', accept: 'image/*' %>
+            <%= form.file_field :banner, class: 'file-input', file_name_id: 'banner_name', required: true, accept: 'image/*' %>
             <span class="file-cta">
               <span class="file-icon">
                 <i class="fas fa-upload"></i>

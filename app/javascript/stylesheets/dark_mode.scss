@@ -77,10 +77,14 @@ a {
 // CARD
 $card-color: var(--color);
 $card-background-color: var(--background-color);
+$card-header-color: white;
 
 // BOX
 $box-color: var(--color);
 $box-background-color: var(--background-color);
+
+// PANEL
+$panel-block-hover-background-color: var(--background-color-secondary);
 
 // FOOTER
 $footer-background-color: var(--background-color);

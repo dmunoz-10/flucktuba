@@ -1,0 +1,131 @@
+<div class="columns">
+  <div class="column is-12">
+    <section class="hero">
+      <div
+        class="hero-body"
+        style="
+          background-image: url(<%= url_for(@fluck.banner) %>); background-position: center;
+          /*background-size: cover; background-repeat: no-repeat;*/ height: 300px;
+        ">
+      </div>
+    </section>
+
+    <div class="column is-12-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-2-desktop">
+      <div class="container">
+        <div class="media" style="margin-top: -35px;">
+          <figure class="media-left">
+            <p class="image is-96x96">
+              <%= image_tag @fluck.image, class: 'is-rounded', style: 'border: 3px white solid', alt: 'Fluck image' %>
+            </p>
+          </figure>
+
+          <div class="media-content">
+            <div class="content" style="margin: 25px 0 0 0">
+              <strong class="title is-2"><%= @fluck.name %></strong>
+              <button type="button" class="button is-link ml-5">Join</button>
+            </div>
+
+            <div class="content">
+              <p>
+                <small class="subtitle is-5"><%= @fluck.nickname %></small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-12">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-12-mobile is-8-tablet">
+          </div>
+
+          <div class="column is-hidden-mobile is-4-tablet">
+            <div class="card my-4" style="box-shadow: none; border: 2px <%= current_user.profile.primary_color %> solid; border-radius: 5px;">
+              <header class="card-header" style="background-color: <%= current_user.profile.primary_color %>;">
+                <p class="card-header-title">
+                  About
+                </p>
+              </header>
+
+              <div class="card-content" style="padding: 1rem;">
+                <div class="content">
+                  <%= @fluck.description %>
+
+                  <div class="tile is-ancestor mb-0 mt-2">
+                    <div class="tile is-parent pb-1">
+                      <div class="tile is-child">
+                        22 Tubas
+                      </div>
+                      <div class="tile is-child">
+                        30 posts
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr class="my-4">
+
+                  <p>
+                    <i class="fas fa-birthday-cake mr-1"></i> Created <%= @fluck.created_at.localtime %>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card my-4" style="box-shadow: none; border: 2px <%= current_user.profile.primary_color %> solid; border-radius: 5px;">
+              <header class="card-header" style="background-color: <%= current_user.profile.primary_color %>;">
+                <p class="card-header-title">
+                  Rules
+                </p>
+              </header>
+
+              <div class="card-content" style="padding: 1rem;">
+                <div class="content">
+                  <div class="panel">
+                    <div style="border-bottom: 1px solid #ededed">
+                      <a class="panel-block accordion-item" div-id="content-1" angle-id="angle-1" style="border: none;">
+                        <span style="width: 100%">
+                          Something 1
+                          <span style="float: right;">
+                            <i class="fas fa-angle-down" aria-hidden="true" id="angle-1"></i>
+                          </span>
+                        </span>
+                      </a>
+                      <div class="is-hidden" id="content-1">
+                        <p class="px-2 py-2">Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card my-4" style="box-shadow: none; border: 2px <%= current_user.profile.primary_color %> solid; border-radius: 5px;">
+              <div class="card-content" style="padding: 1rem;">
+                <div class="content">
+                  <div class="tile is-ancestor">
+                    <div class="tile is-parent">
+                      <div class="tile is-child">
+                        <p>
+                          Something <br>
+                          Something <br>
+                          Something
+                        </p>
+                      </div>
+                      <div class="tile is-child">
+                        Something <br>
+                        Something <br>
+                        Something
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="columns">
+    <div class="column is-12-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-2-desktop is-6-widescreen is-offset-3-widescreen">
+      <div class="box mt-4" style="box-shadow: 0 0.5em 1em -0.125em <%= current_user.profile.primary_color %>20, 0 0px 0 1px <%= current_user.profile.primary_color %>10 !important">
+        <h2 class="title is-2">Edit Fluck</h2>
+
+        <%= render partial: 'form', locals: { fluck: @fluck } %>
+      </div>
+    </div>
+  </div>
+</div>

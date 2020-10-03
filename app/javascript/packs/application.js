@@ -45,12 +45,18 @@ $(document).on('turbolinks:load', function() {
 
   $('.file-input').change(function () {
     const file_name_id = $(this).attr('file_name_id')
-    if($(this).get(0).files.length === 1) {
+
+    if ($(this).get(0).files.length === 1) {
       const file_name = $(this).get(0).files[0].name
       $(`#${file_name_id}`).text(file_name).attr('title', file_name)
     } else {
       $(`#${file_name_id}`).text('No file uploaded').attr('title', '')
     }
+  })
+
+  $('.accordion-item').click(function () {
+    $(`#${$(this).attr('div-id')}`).toggleClass('is-hidden')
+    $(`#${$(this).attr('angle-id')}`).toggleClass('fa-angle-down fa-angle-up')
   })
 })
 
