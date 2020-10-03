@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_043012) do
+ActiveRecord::Schema.define(version: 2020_10_03_183510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 2020_09_30_043012) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "fluck_settings", force: :cascade do |t|
+    t.bigint "fluck_id", null: false
+    t.integer "banner_size", default: 0, null: false
+    t.string "border_image_color", default: "white", null: false
+    t.string "primary_color", default: "#4a86e8", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fluck_id"], name: "index_fluck_settings_on_fluck_id"
+  end
+
   create_table "flucks", force: :cascade do |t|
     t.string "name", null: false
     t.string "nickname", null: false
@@ -83,6 +93,15 @@ ActiveRecord::Schema.define(version: 2020_09_30_043012) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "rules", force: :cascade do |t|
+    t.bigint "fluck_id", null: false
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fluck_id"], name: "index_rules_on_fluck_id"
   end
 
   create_table "tubas", force: :cascade do |t|
@@ -117,7 +136,9 @@ ActiveRecord::Schema.define(version: 2020_09_30_043012) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "fluck_settings", "flucks"
   add_foreign_key "profiles", "users"
+  add_foreign_key "rules", "flucks"
   add_foreign_key "tubas", "flucks"
   add_foreign_key "tubas", "users"
 end

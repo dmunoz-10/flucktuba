@@ -1,7 +1,47 @@
-<footer class="footer" style="grid-row-start: 2; grid-row-end: 3;">
-  <div class="content has-text-centered">
-    <p>
-      © 2020 Copyright: <%= link_to 'flucktuba.com', root_path %>
-    </p>
-  </div>
-</footer>
+<% if type == 1 %>
+  <footer class="footer" style="grid-row-start: 2; grid-row-end: 3;">
+    <div class="content has-text-centered">
+      <p>
+        Flucktuba Inc © 2020. All rights reserved
+      </p>
+    </div>
+  </footer>
+<% elsif type == 2 %>
+  <footer>
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical">
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child">
+              <p>
+                Something <br>
+                Something <br>
+                Something
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child">
+              <p>
+                Something <br>
+                Something <br>
+                Something
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-child">
+            <p>
+              Flucktuba Inc © 2020. All rights reserved
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+<% else %>
+  <footer class="footer" style="grid-row-start: 2; grid-row-end: 3;">
+    <div class="content has-text-centered"></div>
+  </footer>
+<% end %>

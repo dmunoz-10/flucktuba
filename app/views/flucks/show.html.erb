@@ -5,7 +5,8 @@
         class="hero-body"
         style="
           background-image: url(<%= url_for(@fluck.banner) %>); background-position: center;
-          /*background-size: cover; background-repeat: no-repeat;*/ height: 300px;
+          <%= @fluck.setting.banner_size == 'cover' ? 'background-size: cover; background-repeat: no-repeat;' : '' %>
+          height: 300px;
         ">
       </div>
     </section>
@@ -15,7 +16,7 @@
         <div class="media" style="margin-top: -35px;">
           <figure class="media-left">
             <p class="image is-96x96">
-              <%= image_tag @fluck.image, class: 'is-rounded', style: 'border: 3px white solid', alt: 'Fluck image' %>
+              <%= image_tag @fluck.image, class: 'is-rounded', style: "border: 5px #{@fluck.setting.border_image_color} solid", alt: 'Fluck image' %>
             </p>
           </figure>
 
@@ -42,8 +43,8 @@
           </div>
 
           <div class="column is-hidden-mobile is-4-tablet">
-            <div class="card my-4" style="box-shadow: none; border: 2px <%= current_user.profile.primary_color %> solid; border-radius: 5px;">
-              <header class="card-header" style="background-color: <%= current_user.profile.primary_color %>;">
+            <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.setting.primary_color %> solid; border-radius: 5px;">
+              <header class="card-header" style="background-color: <%= @fluck.setting.primary_color %>;">
                 <p class="card-header-title">
                   About
                 </p>
@@ -73,53 +74,52 @@
               </div>
             </div>
 
-            <div class="card my-4" style="box-shadow: none; border: 2px <%= current_user.profile.primary_color %> solid; border-radius: 5px;">
-              <header class="card-header" style="background-color: <%= current_user.profile.primary_color %>;">
-                <p class="card-header-title">
-                  Rules
-                </p>
-              </header>
+            <% if @fluck.rules.size > 0 %>
+              <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.setting.primary_color %> solid; border-radius: 5px;">
+                <header class="card-header" style="background-color: <%= @fluck.setting.primary_color %>;">
+                  <p class="card-header-title">
+                    Rules
+                  </p>
+                </header>
 
-              <div class="card-content" style="padding: 1rem;">
-                <div class="content">
-                  <div class="panel">
-                    <div style="border-bottom: 1px solid #ededed">
-                      <a class="panel-block accordion-item" div-id="content-1" angle-id="angle-1" style="border: none;">
-                        <span style="width: 100%">
-                          Something 1
-                          <span style="float: right;">
-                            <i class="fas fa-angle-down" aria-hidden="true" id="angle-1"></i>
-                          </span>
-                        </span>
-                      </a>
-                      <div class="is-hidden" id="content-1">
-                        <p class="px-2 py-2">Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. Something to say. </p>
-                      </div>
+                <div class="card-content" style="padding: 1rem;">
+                  <div class="content">
+                    <div class="panel">
+                      <% @fluck.rules.each_with_index do |rule, index| %>
+                        <div style="border-bottom: 1px solid #ededed">
+                          <% if rule.description.present? %>
+                            <a class="panel-block accordion-item" div-id="<%= "content-#{index + 1}" %>" angle-id="<%= "angle-#{index + 1}" %>" style="border: none;">
+                              <span style="width: 100%">
+                                <%= "#{index + 1}. #{rule.title}" %>
+                                <span style="float: right;">
+                                  <i class="fas fa-angle-down" aria-hidden="true" id="<%= "angle-#{index + 1}" %>"></i>
+                                </span>
+                              </span>
+                            </a>
+                            <div class="is-hidden" id="<%= "content-#{index + 1}" %>">
+                              <p class="px-2 py-2" style="font-size: 14px">
+                                <%= rule.description %>
+                              </p>
+                            </div>
+                          <% else %>
+                            <a class="panel-block" style="border: none;">
+                              <span style="width: 100%">
+                                <%= "#{index + 1}. #{rule.title}" %>
+                              </span>
+                            </a>
+                          <% end %>
+                        </div>
+                      <% end %>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <% end %>
 
-            <div class="card my-4" style="box-shadow: none; border: 2px <%= current_user.profile.primary_color %> solid; border-radius: 5px;">
+            <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.setting.primary_color %> solid; border-radius: 5px;">
               <div class="card-content" style="padding: 1rem;">
                 <div class="content">
-                  <div class="tile is-ancestor">
-                    <div class="tile is-parent">
-                      <div class="tile is-child">
-                        <p>
-                          Something <br>
-                          Something <br>
-                          Something
-                        </p>
-                      </div>
-                      <div class="tile is-child">
-                        Something <br>
-                        Something <br>
-                        Something
-                      </div>
-                    </div>
-                  </div>
+                  <%= render partial: 'partials/footer', locals: { type: 2 } %>
                 </div>
               </div>
             </div>

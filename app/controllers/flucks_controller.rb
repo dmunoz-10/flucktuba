@@ -16,6 +16,7 @@ class FlucksController < ApplicationController
   def create
     @fluck = authorize Fluck.new(fluck_params)
     if @fluck.save
+      current_user.tubas.create(fluck: @fluck, role: :owner)
       render :show, notice: 'Fluck created!'
     else
       render :edit, alert: 'There was an error!'
