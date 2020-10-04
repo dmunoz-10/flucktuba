@@ -15,6 +15,22 @@ class Fluck < ApplicationRecord
   NICKNAME_REGEXP = /\A(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}\z/.freeze
   validates :nickname, presence: true, format: { with: NICKNAME_REGEXP }, uniqueness: true
 
+  def tuba?(user)
+    tubas.find_by(user: user)
+  end
+
+  def owner?(user)
+    tuba?(user)&.owner?
+  end
+
+  def admin?(user)
+    tuba?(user)&.admin?
+  end
+
+  def banned?(user)
+    tuba?(user)&.banned?
+  end
+
   private
 
   def create_settings

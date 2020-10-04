@@ -1,7 +1,10 @@
 <div class="container">
   <div class="columns mt-5">
+    <div class="column is-12-mobile is-8-tablet">
+    </div>
+
     <div class="column is-12-mobile is-4-tablet">
-      <div style="position: sticky; top: 30px;">
+      <div style="position: sticky; top: 60px;">
         <div
           class="card"
           style="box-shadow: 0 0.5em 1em -0.125em <%= @user.profile.primary_color %>20, 0 0px 0 1px <%= @user.profile.primary_color %>10 !important;
@@ -48,10 +51,15 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="column is-12-mobile is-8-tablet">
+        <div class="card my-4" style="box-shadow: none; border: 2px <%= @user.profile.primary_color %> solid; border-radius: 5px;">
+          <div class="card-content" style="padding: 1rem;">
+            <div class="content">
+              <%= render partial: 'partials/footer', locals: { type: 2 } %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

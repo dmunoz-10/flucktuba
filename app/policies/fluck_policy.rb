@@ -15,4 +15,20 @@ class FluckPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def show?
+    !record.banned?(user)
+  end
+
+  def edit?
+    record.owner?(user) || record.admin?(user)
+  end
+
+  def update?
+    record.owner?(user) || record.admin?(user)
+  end
+
+  def destroy?
+    record.owner?(user)
+  end
 end

@@ -1,4 +1,6 @@
-<%= form_with model: fluck, local: true do |form| %>
+<% url = action == 'create' ? fluck_path : fluck_path(fluck.nickname) %>
+
+<%= form_with model: fluck, url: url, local: true do |form| %>
   <% if fluck.errors.size > 0 %>
     <section class="hero is-danger" style="border-radius: 5px">
       <div class="hero-body">
@@ -82,6 +84,14 @@
   </div>
 
   <div class="has-text-centered">
-    <%= form.button 'Create', class: 'button is-link mt-4' %>
+    <%= form.button action.capitalize, class: 'button is-link mt-4' %>
+  </div>
+<% end %>
+
+<% if fluck.persisted? && policy(fluck).destroy? %>
+  <div class="has-text-centered mt-5">
+    <%= button_to fluck_path(fluck.nickname), class: 'button is-danger is-outlined mb-2', data: { confirm: 'Are you sure?' }, method: :delete do %>
+      Delete Fluck
+    <% end %>
   </div>
 <% end %>

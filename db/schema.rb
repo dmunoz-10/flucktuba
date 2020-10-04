@@ -70,8 +70,10 @@ ActiveRecord::Schema.define(version: 2020_10_03_183510) do
   create_table "fluck_settings", force: :cascade do |t|
     t.bigint "fluck_id", null: false
     t.integer "banner_size", default: 0, null: false
+    t.integer "image_shape", default: 0, null: false
     t.string "border_image_color", default: "white", null: false
     t.string "primary_color", default: "#4a86e8", null: false
+    t.string "text_color", default: "white", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["fluck_id"], name: "index_fluck_settings_on_fluck_id"
