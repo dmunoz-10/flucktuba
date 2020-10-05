@@ -1,17 +1,17 @@
-<div class="modal">
-  <div class="modal-background"></div>
+<div class="modal" data-target="modal.container" id="modal_edit_rules">
+  <div class="modal-background" data-target="modal.background" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"></div>
   <div class="modal-card">
-    <%= form_with url: fluck_rule_path(fluck.nickname, ';'), method: 'put' do |form| %>
+    <%= form_with url: fluck_rule_path(fluck.nickname, '#'), method: 'put', id: 'form_edit_rule' do |form| %>
       <header class="modal-card-head">
         <p class="modal-card-title">Edit rule</p>
-        <button class="delete" aria-label="close"></button>
+        <button class="delete" aria-label="close" data-action="click->modal#close"></button>
       </header>
       <section class="modal-card-body" id="modal_body_edit_rules">
         <%= render partial: 'rules/form', locals: { form: form } %>
       </section>
       <footer class="modal-card-foot">
-        <%= form.button 'Update', class: 'is-success' %>
-        <button class="button">Cancel</button>
+        <button class="button" data-action="click->modal#close" style="margin-left: auto;">Cancel</button>
+        <%= form.button 'Update', class: 'button is-success' %>
       </footer>
     <% end %>
   </div>

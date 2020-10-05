@@ -19,6 +19,8 @@ class RulesController < ApplicationController
     end
   end
 
+  def edit; end
+
   def update
     if @rule.update(rule_params)
       render :update
@@ -42,7 +44,8 @@ class RulesController < ApplicationController
   end
 
   def set_rule
-    @rule = authorize Rule.find(params[:id]), :edit_rules?, policy_class: FluckPolicy
+    authorize @fluck, :edit_rules?, policy_class: FluckPolicy
+    @rule = Rule.find(params[:id])
   end
 
   def set_fluck

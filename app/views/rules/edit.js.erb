@@ -1,0 +1,10 @@
+// Editing the form action
+document.getElementById('form_edit_rule').action = '<%= fluck_rule_path(@fluck.nickname, @rule.id) %>'
+
+// Editing the value of title and description
+document.querySelector('#modal_body_edit_rules #title').value = '<%= @rule.title %>'
+document.querySelector('#modal_body_edit_rules #description').value = '<%= @rule.description %>'
+
+// Editing the modal to show it and the html to hide the overflow
+document.querySelector('html').classList.add('is-clipped')
+document.getElementById('modal_edit_rules').classList.add('is-active')

@@ -13,3 +13,19 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: gray;
 }
+
+.edit-rule {
+  cursor: pointer;
+
+  &:hover {
+    color: #4caf50 !important;
+  }
+}
+
+.delete-rule {
+  cursor: pointer;
+
+  &:hover {
+    color: #d73a49 !important;
+  }
+}

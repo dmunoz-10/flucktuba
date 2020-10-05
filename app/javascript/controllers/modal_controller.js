@@ -6,7 +6,8 @@ export default class extends Controller {
   connect() {
     this.toggleClassesContainer = 'is-active'
     this.toggleClassesHtml = 'is-clipped'
-    this.allowBackgroundClose = (this.data.get('allowBackgroundClose') || 'true') === 'true';
+    this.allowBackgroundClose = (this.data.get('allowBackgroundClose') || 'true') === 'true'
+    this.allowKeyboardClose = (this.data.get('allowKeyboardClose') || 'true') === 'true'
   }
 
   open() {
@@ -26,7 +27,7 @@ export default class extends Controller {
   }
 
   closeWithKeyboard(e) {
-    if (e.keyCode === 27 && this.containerTarget.classList.contains(this.toggleClassesContainer)) {
+    if (e.keyCode === 27 && this.allowKeyboardClose && this.containerTarget.classList.contains(this.toggleClassesContainer)) {
       this.close()
     }
   }

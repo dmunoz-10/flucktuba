@@ -8,8 +8,13 @@ import 'controllers'
 import {
   getMetaValue,
 } from 'helpers'
+import Rails from '@rails/ujs'
 
-require("@rails/ujs").start()
+window.Rails = Rails
+if (Rails.fire(document, 'rails:attachBidings')) {
+  Rails.start()
+}
+
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
@@ -57,6 +62,22 @@ $(document).on('turbolinks:load', function() {
   $('.accordion-item').click(function () {
     $(`#${$(this).attr('div-id')}`).toggleClass('is-hidden')
     $(`#${$(this).attr('angle-id')}`).toggleClass('fa-angle-down fa-angle-up')
+  })
+
+  $('.edit-rule').click(function () {
+    Rails.ajax({
+      url: `${$(this).attr('url')}`,
+      type: 'get'
+    })
+  })
+
+  $('.delete-rule').click(function () {
+    if (confirm('Are you sure?')) {
+      Rails.ajax({
+        url: `${$(this).attr('url')}`,
+        type: 'delete'
+      })
+    }
   })
 })
 
