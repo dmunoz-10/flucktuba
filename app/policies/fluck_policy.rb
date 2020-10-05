@@ -31,4 +31,8 @@ class FluckPolicy < ApplicationPolicy
   def destroy?
     record.owner?(user)
   end
+
+  def edit_rules?
+    record.owner?(user) || record.admin?(user)
+  end
 end

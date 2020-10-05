@@ -1,0 +1,18 @@
+<div class="modal" data-target="modal.container">
+  <div class="modal-background" data-target="modal.background" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"></div>
+  <div class="modal-card">
+    <%= form_with url: fluck_rules_path(fluck.nickname) do |form| %>
+      <header class="modal-card-head">
+        <p class="modal-card-title">Create a new rule</p>
+        <button class="delete" aria-label="close" data-action="click->modal#close"></button>
+      </header>
+      <section class="modal-card-body" id="modal_body_create_rules">
+        <%= render partial: 'rules/form', locals: { form: form } %>
+      </section>
+      <footer class="modal-card-foot has-text-right">
+        <button class="button" data-action="click->modal#close" style="margin-left: auto;">Cancel</button>
+        <%= form.button 'Create', class: 'button is-link' %>
+      </footer>
+    <% end %>
+  </div>
+</div>

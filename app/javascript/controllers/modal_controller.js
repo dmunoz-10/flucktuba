@@ -1,29 +1,32 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  static targets = ['container']
+  static targets = ['container', 'background']
 
   connect() {
-    this.toggleClasses = ['is-active', 'is-clipped']
+    this.toggleClassesContainer = 'is-active'
+    this.toggleClassesHtml = 'is-clipped'
     this.allowBackgroundClose = (this.data.get('allowBackgroundClose') || 'true') === 'true';
   }
 
   open() {
-    this.containerTarget.classList.add(...this.toggleClasses)
+    this.containerTarget.classList.add(this.toggleClassesContainer)
+    document.querySelector('html').classList.add(this.toggleClassesHtml)
   }
 
   close() {
-    this.containerTarget.classList.remove(...this.toggleClasses)
+    this.containerTarget.classList.remove(this.toggleClassesContainer)
+    document.querySelector('html').classList.remove(this.toggleClassesHtml)
   }
 
   closeBackground(e) {
-    if (this.allowBackgroundClose && e.target === this.containerTarget) {
-      this.close(e)
+    if (this.allowBackgroundClose && e.target === this.backgroundTarget) {
+      this.close()
     }
   }
 
   closeWithKeyboard(e) {
-    if (e.keyCode === 27 && !this.containerTarget.classList.contains('is-active', 'is-clipped')) {
+    if (e.keyCode === 27 && this.containerTarget.classList.contains(this.toggleClassesContainer)) {
       this.close()
     }
   }

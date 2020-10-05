@@ -1,0 +1,15 @@
+<div class="field my-3">
+  <%= form.label :title, class: 'label' %>
+  <div class="control has-icons-left">
+    <%= form.text_field :title, class: 'input', autocomplete: 'title', required: true %>
+    <span class="icon is-left"><i class="fas fa-heading"></i></span>
+  </div>
+</div>
+
+<div class="field my-3">
+  <%= form.label :description, class: 'label' %>
+  <p class="control has-icons-left">
+    <%= form.text_area :description, class: 'input', style:'height: 100px; resize: none', maxlength: 300 %>
+    <span class="icon is-left"><i class="fas fa-align-justify"></i></span>
+  </p>
+</div>

@@ -1,0 +1,18 @@
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <%= form_with url: fluck_rule_path(fluck.nickname, ';'), method: 'put' do |form| %>
+      <header class="modal-card-head">
+        <p class="modal-card-title">Edit rule</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body" id="modal_body_edit_rules">
+        <%= render partial: 'rules/form', locals: { form: form } %>
+      </section>
+      <footer class="modal-card-foot">
+        <%= form.button 'Update', class: 'is-success' %>
+        <button class="button">Cancel</button>
+      </footer>
+    <% end %>
+  </div>
+</div>

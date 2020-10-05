@@ -84,7 +84,7 @@
   </div>
 
   <div class="has-text-centered">
-    <%= form.button action.capitalize, class: 'button is-link mt-4' %>
+    <%= form.button action.capitalize, class: "button #{action == 'create' ? 'is-link' : 'is-success'} mt-4" %>
   </div>
 <% end %>
 

@@ -97,26 +97,29 @@
               </div>
             </div>
 
-            <% if @fluck.rules.size > 0 %>
+            <% if @fluck.rules.size > 0 || policy(@fluck).edit_rules? %>
               <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.setting.primary_color %> solid; border-radius: 5px;">
                 <header class="card-header" style="background-color: <%= @fluck.setting.primary_color %>; width: 100%;">
                   <p class="card-header-title" style="color: <%= @fluck.setting.text_color %>">
                     Rules
                   </p>
-                  <span style="float: right; padding: 0.75rem 1rem;">
-                    <%= link_to 'Edit Rules',
-                                root_path,
-                                style: "color: #{@fluck.setting.text_color};
-                                        font-size: 14px;
-                                        padding: 6px;
-                                        border: 1px #{@fluck.setting.text_color} solid;
-                                        border-radius: 2px;" %>
-                  </span>
+
+                  <% if policy(@fluck).edit_rules? %>
+                    <span data-controller="modal" data-modal-allow-background-close="true">
+                      <span style="float: right; padding: 0.75rem 1rem;">
+                        <a data-action="click->modal#open" style="color: #{@fluck.setting.text_color}; font-size: 14px; padding: 6px;">
+                          <i class="fas fa-plus-circle"></i>
+                        </a>
+                      </span>
+
+                      <%= render partial: 'rules/modal_new', locals: { fluck: @fluck } %>
+                    </span>
+                  <% end %>
                 </header>
 
                 <div class="card-content" style="padding: 1rem;">
                   <div class="content">
-                    <div class="panel">
+                    <div class="panel" id="panel_rules">
                       <% @fluck.rules.each_with_index do |rule, index| %>
                         <div style="border-bottom: 1px solid #ededed">
                           <% if rule.description.present? %>
@@ -131,17 +134,32 @@
                             <div class="is-hidden" id="<%= "content-#{index + 1}" %>">
                               <p class="px-2 py-2" style="font-size: 14px">
                                 <%= rule.description %>
+
+                                <% if policy(@fluck).edit_rules? %>
+                                  <span style="float: right;">
+                                    <i class="fas fa-edit my-1" aria-hidden="true"></i>
+                                    <i class="fas fa-trash-alt my-1" aria-hidden="true"></i>
+                                  </span>
+                                <% end %>
                               </p>
                             </div>
                           <% else %>
                             <a class="panel-block" style="border: none;">
                               <span style="width: 100%">
                                 <%= "#{index + 1}. #{rule.title}" %>
+
+                                <% if policy(@fluck).edit_rules? %>
+                                  <span style="float: right;">
+                                    <i class="fas fa-edit my-1" aria-hidden="true"></i>
+                                    <i class="fas fa-trash-alt my-1" aria-hidden="true"></i>
+                                  </span>
+                                <% end %>
                               </span>
                             </a>
                           <% end %>
                         </div>
                       <% end %>
+                      <%= render partial: 'rules/modal_edit', locals: { fluck: @fluck } %>
                     </div>
                   </div>
                 </div>

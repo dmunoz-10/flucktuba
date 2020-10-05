@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   end
   resource :profile, only: :update
 
-  resources :flucks, except: %i[show index]
+  resources :flucks, except: %i[show index] do
+    resources :rules, except: %i[new show edit]
+  end
 
   get '/:id', to: 'flucks#show', as: :show_flucks
 
