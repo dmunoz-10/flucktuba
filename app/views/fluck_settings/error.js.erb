@@ -1,0 +1,27 @@
+// Setting the errors
+<% @setting.errors.full_messages.each_with_index do |error, index| %>
+  <% if index == 0 %>
+    document.getElementById('ul_error_settings')
+            .innerHTML = '<li><%= error %></li>'
+  <% else %>
+    document.getElementById('ul_error_settings')
+            .innerHTML += '<li><%= error %></li>'
+  <% end %>
+<% end %>
+
+// Setting the message
+document.querySelector('#message_error_setting h6').innerHTML = 'There was an error!'
+
+// Showing the message
+document.getElementById('message_error_setting').classList.remove('is-hidden')
+document.getElementById('message_error_setting').classList.add('fade-in')
+
+// Hiding the message after 5 seconds
+setTimeout(function() {
+  document.getElementById('message_error_setting').classList.add('fade-out')
+
+  // Hide the element after fade out transition
+  setTimeout(function() {
+    document.getElementById('message_error_setting').classList.add('is-hidden')
+  }, 2000)
+}, 5000)

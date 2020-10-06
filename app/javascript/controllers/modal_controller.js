@@ -10,12 +10,20 @@ export default class extends Controller {
     this.allowKeyboardClose = (this.data.get('allowKeyboardClose') || 'true') === 'true'
   }
 
-  open() {
+  open(e) {
+    if (e) {
+      e.preventDefault()
+    }
+
     this.containerTarget.classList.add(this.toggleClassesContainer)
     document.querySelector('html').classList.add(this.toggleClassesHtml)
   }
 
-  close() {
+  close(e) {
+    if (e) {
+      e.preventDefault()
+    }
+
     this.containerTarget.classList.remove(this.toggleClassesContainer)
     document.querySelector('html').classList.remove(this.toggleClassesHtml)
   }

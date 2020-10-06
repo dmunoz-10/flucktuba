@@ -10,7 +10,6 @@ class FluckSetting < ApplicationRecord
   validate :one_settings_per_fluck
   validates :banner_size, presence: true
   validates :image_shape, presence: true
-  validates :border_image_color, presence: true
   validates :primary_color, presence: true
   validates :text_color, presence: true
 

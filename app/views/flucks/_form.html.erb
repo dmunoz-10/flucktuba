@@ -1,4 +1,4 @@
-<% url = action == 'create' ? fluck_path : fluck_path(fluck.nickname) %>
+<% url = action == 'create' ? flucks_path : fluck_path(fluck.nickname) %>
 
 <%= form_with model: fluck, url: url, local: true do |form| %>
   <% if fluck.errors.size > 0 %>

@@ -35,4 +35,8 @@ class FluckPolicy < ApplicationPolicy
   def edit_rules?
     record.owner?(user) || record.admin?(user)
   end
+
+  def customize?
+    record.owner?(user) || record.admin?(user)
+  end
 end
