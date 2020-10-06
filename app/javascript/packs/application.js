@@ -61,7 +61,7 @@ $(document).on('turbolinks:load', function() {
 })
 
 $(document).on('turbolinks:before-cache', function() {
-  $('.navbar-burger').click('destroy')
+  $('.navbar-burger').off('click', 'destroy')
 })
 
 // Uncomment to copy all static images under ../images to the output folder and reference

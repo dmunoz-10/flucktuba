@@ -5,6 +5,8 @@ class FlucksController < ApplicationController
   before_action :authenticate_user!, except: :show
   before_action :set_fluck, except: %i[new create]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :content_not_found
+
   def new
     @fluck = authorize Fluck.new
   end
@@ -46,6 +48,9 @@ class FlucksController < ApplicationController
   end
 
   def set_fluck
-    @fluck = authorize Fluck.find_by(nickname: params[:id])
+    @fluck = Fluck.find_by(nickname: params[:id])
+    raise ActiveRecord::RecordNotFound if @fluck.nil?
+
+    authorize @fluck
   end
 end

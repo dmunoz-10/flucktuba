@@ -6,6 +6,8 @@ class RulesController < ApplicationController
   before_action :set_fluck
   before_action :set_rule, except: :create
 
+  rescue_from ActiveRecord::RecordNotFound, with: :content_not_found
+
   def create
     @rule = @fluck.rules.new(rule_params)
     @type = 1
@@ -49,11 +51,14 @@ class RulesController < ApplicationController
   end
 
   def set_rule
-    authorize @fluck, :edit_rules?, policy_class: FluckPolicy
     @rule = Rule.find(params[:id])
+    raise ActiveRecord::RecordNotFound if @rule.nil?
   end
 
   def set_fluck
     @fluck = Fluck.find_by(nickname: params[:fluck_id])
+    raise ActiveRecord::RecordNotFound if @fluck.nil?
+
+    authorize @fluck, :edit_rules?, policy_class: FluckPolicy
   end
 end

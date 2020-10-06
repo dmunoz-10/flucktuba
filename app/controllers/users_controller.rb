@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: :remove_avatar
   before_action :set_user, only: :show
 
+  rescue_from ActiveRecord::RecordNotFound, with: :content_not_found
+
   def show; end
 
   def remove_avatar
@@ -16,6 +18,9 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = authorize User.find_by(username: params[:id])
+    @user = User.find_by(username: params[:id])
+    raise ActiveRecord::RecordNotFound if @user.nil?
+
+    authorize @user
   end
 end

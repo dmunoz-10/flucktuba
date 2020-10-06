@@ -5,6 +5,8 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile
 
+  rescue_from ActiveRecord::RecordNotFound, with: :content_not_found
+
   def update
     if @profile.update(profile_params)
       redirect_to edit_user_registration_path, notice: 'Settings has changed!'
@@ -20,6 +22,9 @@ class ProfilesController < ApplicationController
   end
 
   def set_profile
-    @profile = authorize current_user.profile
+    @profile = current_user.profile
+    raise ActiveRecord::RecordNotFound if @profile.nil?
+
+    authorize @profile
   end
 end
