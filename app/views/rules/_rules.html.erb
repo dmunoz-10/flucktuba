@@ -15,7 +15,7 @@
             <%= rule.description %>
 
             <% if policy(@fluck).edit_rules? %>
-              <span style="float: right;" data-controller="rules" data-rules-url-edit="<%= edit_fluck_rule_path(@fluck.nickname, rule.id) %>" data-rules-url-delete="<%= fluck_rule_path(@fluck.nickname, rule.id) %>">
+              <span style="float: right;" data-controller="rules" data-rules-url-edit="<%= edit_fluck_rule_path(@fluck.nickname, rule.to_param) %>" data-rules-url-delete="<%= fluck_rule_path(@fluck.nickname, rule.to_param) %>">
                 <i class="fas fa-edit my-1" aria-hidden="true" data-action="click->rules#edit"></i>
                 <i class="fas fa-trash-alt my-1" aria-hidden="true" data-action="click->rules#delete"></i>
               </span>
@@ -29,7 +29,7 @@
           <%= "#{index + 1}. #{rule.title}" %>
 
           <% if policy(@fluck).edit_rules? %>
-            <span style="float: right;" data-controller="rules" data-rules-url-edit="<%= edit_fluck_rule_path(@fluck.nickname, rule.id) %>" data-rules-url-delete="<%= fluck_rule_path(@fluck.nickname, rule.id) %>">
+            <span style="float: right;" data-controller="rules" data-rules-url-edit="<%= edit_fluck_rule_path(@fluck.nickname, rule.to_param) %>" data-rules-url-delete="<%= fluck_rule_path(@fluck.nickname, rule.to_param) %>">
               <i class="fas fa-edit my-1" aria-hidden="true" data-action="click->rules#edit"></i>
               <i class="fas fa-trash-alt my-1" aria-hidden="true" data-action="click->rules#delete"></i>
             </span>

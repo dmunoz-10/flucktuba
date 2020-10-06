@@ -1,5 +1,5 @@
 // Editing the form action
-document.getElementById('form_edit_rule').action = '<%= fluck_rule_path(@fluck.nickname, @rule.id) %>'
+document.getElementById('form_edit_rule').action = '<%= fluck_rule_path(@fluck.nickname, @rule.to_param) %>'
 
 // Editing the value of title and description
 document.querySelector('#modal_body_edit_rules #title').value = '<%= @rule.title %>'

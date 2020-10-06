@@ -26,6 +26,7 @@ gem 'redis', '~> 4.0'
 
 gem 'activeadmin', '~> 2.8'
 gem 'devise', '~> 4.7', '>= 4.7.2'
+gem 'hashid-rails', '~> 1.4', '>= 1.4.1'
 gem 'pagy', '~> 3.8', '>= 3.8.3'
 gem 'pundit', '~> 2.1'
 gem 'rubocop', '~> 0.90.0'

@@ -2,6 +2,8 @@
 
 # Fluck Model
 class Rule < ApplicationRecord
+  include Hashid::Rails
+
   belongs_to :fluck
 
   validates :title, presence: true, length: { maximum: 30 }

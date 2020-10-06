@@ -21,10 +21,8 @@ class FluckSettingsController < ApplicationController
   end
 
   def set_fluck
-    @fluck = Fluck.find_by nickname: params[:id]
-    raise ActiveRecord::RecordNotFound if @fluck.nil?
-
-    authorize @fluck, :customize?, policy_class: FluckPolicy
+    @fluck = authorize Fluck.find_by!(nickname: params[:id]),
+                       :customize?, policy_class: FluckPolicy
     @setting = @fluck.setting
   end
 end

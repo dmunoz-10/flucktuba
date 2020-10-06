@@ -8,7 +8,9 @@ export default class extends Controller {
     this.toggleClassesAngle = ['fa-angle-down', 'fa-angle-up']
   }
 
-  toggle() {
+  toggle(event) {
+    event.preventDefault()
+
     this.contentTarget.classList.toggle(this.toggleClassesContent)
     this.toggleAngleIcon()
   }

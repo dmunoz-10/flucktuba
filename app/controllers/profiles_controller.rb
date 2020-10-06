@@ -22,9 +22,6 @@ class ProfilesController < ApplicationController
   end
 
   def set_profile
-    @profile = current_user.profile
-    raise ActiveRecord::RecordNotFound if @profile.nil?
-
-    authorize @profile
+    @profile = authorize current_user.profile
   end
 end

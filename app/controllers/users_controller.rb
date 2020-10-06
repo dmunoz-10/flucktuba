@@ -18,9 +18,6 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find_by(username: params[:id])
-    raise ActiveRecord::RecordNotFound if @user.nil?
-
-    authorize @user
+    @user = authorize User.find_by!(username: params[:id])
   end
 end

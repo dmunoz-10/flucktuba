@@ -48,9 +48,6 @@ class FlucksController < ApplicationController
   end
 
   def set_fluck
-    @fluck = Fluck.find_by(nickname: params[:id])
-    raise ActiveRecord::RecordNotFound if @fluck.nil?
-
-    authorize @fluck
+    @fluck = authorize Fluck.find_by!(nickname: params[:id])
   end
 end

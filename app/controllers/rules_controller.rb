@@ -51,14 +51,11 @@ class RulesController < ApplicationController
   end
 
   def set_rule
-    @rule = Rule.find(params[:id])
-    raise ActiveRecord::RecordNotFound if @rule.nil?
+    @rule = Rule.find_by_hashid!(params[:id])
   end
 
   def set_fluck
-    @fluck = Fluck.find_by(nickname: params[:fluck_id])
-    raise ActiveRecord::RecordNotFound if @fluck.nil?
-
-    authorize @fluck, :edit_rules?, policy_class: FluckPolicy
+    @fluck = authorize Fluck.find_by!(nickname: params[:fluck_id]),
+                       :edit_rules?, policy_class: FluckPolicy
   end
 end
