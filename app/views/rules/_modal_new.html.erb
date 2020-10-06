@@ -1,4 +1,4 @@
-<div class="modal" data-target="modal.container">
+<div class="modal" data-target="modal.container" id="modal_new_rules">
   <div class="modal-background" data-target="modal.background" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"></div>
   <div class="modal-card">
     <%= form_with url: fluck_rules_path(fluck.nickname) do |form| %>
@@ -7,6 +7,18 @@
         <button class="delete" aria-label="close" data-action="click->modal#close"></button>
       </header>
       <section class="modal-card-body" id="modal_body_create_rules">
+        <section class="hero is-danger mb-4 is-hidden" style="border-radius: 5px;" id="message_error_new">
+          <div class="hero-body" style="padding: 1rem 2rem;">
+            <div class="container">
+              <h6 class="title is-4"></h6>
+
+              <div class="content">
+                <ul class="ml-4" id="ul_error_new"></ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <%= render partial: 'rules/form', locals: { form: form } %>
       </section>
       <footer class="modal-card-foot has-text-right">

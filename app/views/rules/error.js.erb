@@ -1,0 +1,49 @@
+<% if @type == 1 %>
+  // ID message in modal new
+  <% id_message = 'message_error_new' %>
+
+  // Setting the errors
+  <% @rule.errors.full_messages.each_with_index do |error, index| %>
+    <% if index == 0 %>
+      document.getElementById('ul_error_new')
+              .innerHTML = '<li><%= error %></li>'
+    <% else %>
+    document.getElementById('ul_error_new')
+            .innerHTML += '<li><%= error %></li>'
+    <% end %>
+  <% end %>
+<% elsif @type == 2 %>
+  // ID message in modal edit
+  <% id_message = 'message_error_edit' %>
+
+  // Setting the errors
+  <% @rule.errors.full_messages.each_with_index do |error, index| %>
+    <% if index == 0 %>
+      document.getElementById('ul_error_edit')
+              .innerHTML = '<li><%= error %></li>'
+    <% else %>
+    document.getElementById('ul_error_edit')
+            .innerHTML += '<li><%= error %></li>'
+    <% end %>
+  <% end %>
+<% else %>
+  // ID message in rules card
+  <% id_message = 'message_rules_failed' %>
+<% end %>
+
+// Setting the message
+document.querySelector('#<%= id_message %> h6').innerHTML = 'There was an error!'
+
+// Showing the message
+document.getElementById('<%= id_message %>').classList.remove('is-hidden')
+document.getElementById('<%= id_message %>').classList.add('fade-in')
+
+// Hiding the message after 5 seconds
+setTimeout(function() {
+  document.getElementById('<%= id_message %>').classList.add('fade-out')
+
+  // Hide the element after fade out transition
+  setTimeout(function() {
+    document.getElementById('<%= id_message %>').classList.add('is-hidden')
+  }, 2000)
+}, 5000)

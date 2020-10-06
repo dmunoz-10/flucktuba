@@ -58,27 +58,6 @@ $(document).on('turbolinks:load', function() {
       $(`#${file_name_id}`).text('No file uploaded').attr('title', '')
     }
   })
-
-  $('.accordion-item').click(function () {
-    $(`#${$(this).attr('div-id')}`).toggleClass('is-hidden')
-    $(`#${$(this).attr('angle-id')}`).toggleClass('fa-angle-down fa-angle-up')
-  })
-
-  $('.edit-rule').click(function () {
-    Rails.ajax({
-      url: `${$(this).attr('url')}`,
-      type: 'get'
-    })
-  })
-
-  $('.delete-rule').click(function () {
-    if (confirm('Are you sure?')) {
-      Rails.ajax({
-        url: `${$(this).attr('url')}`,
-        type: 'delete'
-      })
-    }
-  })
 })
 
 $(document).on('turbolinks:before-cache', function() {

@@ -1,0 +1,37 @@
+<% if @type == 1 %>
+  document.getElementById('modal_new_rules').classList.remove('is-active')
+  document.querySelector('html').classList.remove('is-clipped')
+
+  document.querySelector('input[name="rule[title]"]').value = ''
+  document.querySelector('textarea[name="rule[description]"]').value = ''
+<% end %>
+
+<% if @type == 2 %>
+  document.getElementById('modal_edit_rules').classList.remove('is-active')
+  document.querySelector('html').classList.remove('is-clipped')
+
+  document.querySelector('input[name="rule[title]"]').value = ''
+  document.querySelector('textarea[name="rule[description]"]').value = ''
+<% end %>
+
+// Rendering all rules
+document.getElementById('panel_rules')
+        .innerHTML = `<%= j render partial: 'rules/rules', locals: { rules: @rules } %>`
+
+// Setting the message
+document.querySelector('#message_rules_success h6')
+        .innerHTML = '<%= @message %>'
+
+// Showing the message
+document.getElementById('message_rules_success').classList.remove('is-hidden')
+document.getElementById('message_rules_success').classList.add('fade-in')
+
+// Hiding the message after 5 seconds
+setTimeout(function() {
+  document.getElementById('message_rules_success').classList.add('fade-out')
+
+  // Hide the element after fade out transition
+  setTimeout(function() {
+    document.getElementById('message_rules_success').classList.add('is-hidden')
+  }, 2000)
+}, 5000)

@@ -4,16 +4,15 @@
 class RulesController < ApplicationController
   before_action :authenticate_user!, except: :show
   before_action :set_fluck
-  before_action :set_rule, except: %i[index create]
-
-  def index
-    @rules = @fluck.rules
-  end
+  before_action :set_rule, except: :create
 
   def create
     @rule = @fluck.rules.new(rule_params)
+    @type = 1
     if @rule.save
-      render :create
+      @rules = @fluck.rules
+      @message = 'Rule created!'
+      render :index
     else
       render :error
     end
@@ -22,16 +21,22 @@ class RulesController < ApplicationController
   def edit; end
 
   def update
+    @type = 2
     if @rule.update(rule_params)
-      render :update
+      @rules = @fluck.rules
+      @message = 'Rule updated!'
+      render :index
     else
       render :error
     end
   end
 
   def destroy
+    @type = 3
     if @rule.destroy
-      render :destroy
+      @rules = @fluck.rules
+      @message = 'Rule deleted!'
+      render :index
     else
       render :error
     end

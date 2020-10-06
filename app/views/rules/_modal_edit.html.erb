@@ -7,6 +7,18 @@
         <button class="delete" aria-label="close" data-action="click->modal#close"></button>
       </header>
       <section class="modal-card-body" id="modal_body_edit_rules">
+        <section class="hero is-danger mb-4 is-hidden" style="border-radius: 5px;" id="message_error_edit">
+          <div class="hero-body" style="padding: 1rem 2rem;">
+            <div class="container">
+              <h6 class="title is-4"></h6>
+
+              <div class="content">
+                <ul class="ml-4" id="ul_error_edit"></ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <%= render partial: 'rules/form', locals: { form: form } %>
       </section>
       <footer class="modal-card-foot">

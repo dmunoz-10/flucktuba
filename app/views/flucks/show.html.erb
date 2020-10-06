@@ -118,47 +118,25 @@
                 </header>
 
                 <div class="card-content" style="padding: 1rem;">
+                  <section class="hero is-primary mb-4 is-hidden" style="border-radius: 5px;" id="message_rules_success">
+                    <div class="hero-body" style="padding: 1rem 2rem;">
+                      <div class="container">
+                        <h6 class="subtitle is-6"></h6>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="hero is-danger mb-4 is-hidden" style="border-radius: 5px;" id="message_rules_failed">
+                    <div class="hero-body" style="padding: 1rem 2rem;">
+                      <div class="container">
+                        <h6 class="subtitle is-6"></h6>
+                      </div>
+                    </div>
+                  </section>
+
                   <div class="content">
                     <div class="panel" id="panel_rules">
-                      <% @fluck.rules.each_with_index do |rule, index| %>
-                        <div style="border-bottom: 1px solid #ededed">
-                          <% if rule.description.present? %>
-                            <a class="panel-block accordion-item" div-id="<%= "content-#{index + 1}" %>" angle-id="<%= "angle-#{index + 1}" %>" style="border: none;">
-                              <span style="width: 100%">
-                                <%= "#{index + 1}. #{rule.title}" %>
-                                <span style="float: right;">
-                                  <i class="fas fa-angle-down" aria-hidden="true" id="<%= "angle-#{index + 1}" %>"></i>
-                                </span>
-                              </span>
-                            </a>
-                            <div class="is-hidden" id="<%= "content-#{index + 1}" %>">
-                              <p class="px-2 py-2" style="font-size: 14px">
-                                <%= rule.description %>
-
-                                <% if policy(@fluck).edit_rules? %>
-                                  <span style="float: right;">
-                                    <i class="fas fa-edit my-1 edit-rule" aria-hidden="true" url="<%= edit_fluck_rule_path(@fluck.nickname, rule.id) %>"></i>
-                                    <i class="fas fa-trash-alt my-1 delete-rule" aria-hidden="true" url="<%= fluck_rule_path(@fluck.nickname, rule.id) %>"></i>
-                                  </span>
-                                <% end %>
-                              </p>
-                            </div>
-                          <% else %>
-                            <a class="panel-block" style="border: none;">
-                              <span style="width: 100%">
-                                <%= "#{index + 1}. #{rule.title}" %>
-
-                                <% if policy(@fluck).edit_rules? %>
-                                  <span style="float: right;">
-                                    <i class="fas fa-edit my-1 edit-rule" aria-hidden="true" url="<%= edit_fluck_rule_path(@fluck.nickname, rule.id) %>"></i>
-                                    <i class="fas fa-trash-alt my-1 delete-rule" aria-hidden="true" url="<%= fluck_rule_path(@fluck.nickname, rule.id) %>"></i>
-                                  </span>
-                                <% end %>
-                              </span>
-                            </a>
-                          <% end %>
-                        </div>
-                      <% end %>
+                      <%= render partial: 'rules/rules', locals: { rules: @fluck.rules } %>
                     </div>
 
                     <div data-controller="modal" data-modal-allow-background-close="true" data-modal-allow-keyboard-close="true">

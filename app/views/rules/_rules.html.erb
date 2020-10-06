@@ -1,0 +1,41 @@
+<% rules.each_with_index do |rule, index| %>
+  <div style="border-bottom: 1px solid #ededed">
+    <% if rule.description.present? %>
+      <div data-controller="accordion">
+        <a class="panel-block" data-action="click->accordion#toggle" style="border: none;">
+          <span style="width: 100%">
+            <%= "#{index + 1}. #{rule.title}" %>
+            <span style="float: right;">
+              <i class="fas fa-angle-down" aria-hidden="true" data-target="accordion.angle"></i>
+            </span>
+          </span>
+        </a>
+        <div class="is-hidden" data-target="accordion.content">
+          <p class="px-2 py-2" style="font-size: 14px">
+            <%= rule.description %>
+
+            <% if policy(@fluck).edit_rules? %>
+              <span style="float: right;" data-controller="rules" data-rules-url-edit="<%= edit_fluck_rule_path(@fluck.nickname, rule.id) %>" data-rules-url-delete="<%= fluck_rule_path(@fluck.nickname, rule.id) %>">
+                <i class="fas fa-edit my-1" aria-hidden="true" data-action="click->rules#edit"></i>
+                <i class="fas fa-trash-alt my-1" aria-hidden="true" data-action="click->rules#delete"></i>
+              </span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    <% else %>
+      <a class="panel-block" style="border: none;">
+        <span style="width: 100%">
+          <%= "#{index + 1}. #{rule.title}" %>
+
+          <% if policy(@fluck).edit_rules? %>
+            <span style="float: right;" data-controller="rules" data-rules-url-edit="<%= edit_fluck_rule_path(@fluck.nickname, rule.id) %>" data-rules-url-delete="<%= fluck_rule_path(@fluck.nickname, rule.id) %>">
+              <i class="fas fa-edit my-1" aria-hidden="true" data-action="click->rules#edit"></i>
+              <i class="fas fa-trash-alt my-1" aria-hidden="true" data-action="click->rules#delete"></i>
+            </span>
+          <% end %>
+        </span>
+      </a>
+    <% end %>
+  </div>
+<% end %>
