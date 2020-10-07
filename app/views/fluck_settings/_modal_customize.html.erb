@@ -1,7 +1,7 @@
 <div class="modal" data-target="modal.container">
   <div class="modal-background" data-target="modal.background" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"></div>
   <div class="modal-card">
-    <%= form_with model: @fluck.setting, url: settings_fluck_path(fluck.nickname), method: 'put', local: true do |form| %>
+    <%= form_with model: @fluck.settings, url: settings_fluck_path(fluck.nickname), method: 'put', local: true do |form| %>
       <header class="modal-card-head">
         <p class="modal-card-title">Customize Fluck</p>
         <button class="delete" aria-label="close" data-action="click->modal#close"></button>
@@ -19,7 +19,7 @@
           </div>
         </section>
 
-        <%= render partial: 'fluck_settings/form', locals: { form: form, setting: @fluck.setting } %>
+        <%= render partial: 'fluck_settings/form', locals: { form: form, settings: @fluck.settings } %>
       </section>
       <footer class="modal-card-foot">
         <button class="button" data-action="click->modal#close" style="margin-left: auto;">Cancel</button>

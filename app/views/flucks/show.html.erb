@@ -5,7 +5,7 @@
         class="hero-body"
         style="
           background-image: url(<%= url_for(@fluck.banner) %>); background-position: center;
-          <%= 'background-size: cover; background-repeat: no-repeat;' if @fluck.setting.banner_size == 'cover' %>
+          <%= 'background-size: cover; background-repeat: no-repeat;' if @fluck.settings.banner_size == 'cover' %>
           height: 300px;
         ">
       </div>
@@ -19,9 +19,9 @@
               <figure class="media-left">
                 <p class="image is-96x96">
                   <%= image_tag @fluck.image,
-                  class: "#{'is-rounded' if @fluck.setting.image_shape == 'circle'}",
+                  class: "#{'is-rounded' if @fluck.settings.image_shape == 'circle'}",
                   style: "border: 5px white solid;
-                  #{'border-radius: 25%;' if @fluck.setting.image_shape == 'square_with_rounded_corners'}",
+                  #{'border-radius: 25%;' if @fluck.settings.image_shape == 'square_with_rounded_corners'}",
                   alt: 'Fluck image' %>
                 </p>
               </figure>
@@ -29,8 +29,8 @@
               <div class="media-content">
                 <div class="content" style="margin: 25px 0 0 0">
                   <strong class="title is-2 has-text-black"><%= @fluck.name %></strong>
-                  <button type="button" class="button ml-5" style="background-color: <%= @fluck.setting.primary_color %>; color: <%= @fluck.setting.text_color %>">Join</button>
-                  <button type="button" class="button is-outlined ml-5" style="background-color: white; color: <%= @fluck.setting.primary_color %>; border: 2px <%= @fluck.setting.primary_color %> solid;">Leave</button>
+                  <button type="button" class="button ml-5" style="background-color: <%= @fluck.settings.primary_color %>; color: <%= @fluck.settings.text_color %>">Join</button>
+                  <button type="button" class="button is-outlined ml-5" style="background-color: white; color: <%= @fluck.settings.primary_color %>; border: 2px <%= @fluck.settings.primary_color %> solid;">Leave</button>
                 </div>
 
                 <div class="content">
@@ -54,9 +54,9 @@
           </div>
 
           <div class="column is-hidden-mobile is-4-tablet">
-            <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.setting.primary_color %> solid; border-radius: 5px;">
-              <header class="card-header" style="background-color: <%= @fluck.setting.primary_color %>; width: 100%;">
-                <p class="card-header-title" style="color: <%= @fluck.setting.text_color %>">
+            <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.settings.primary_color %> solid; border-radius: 5px;">
+              <header class="card-header" style="background-color: <%= @fluck.settings.primary_color %>; width: 100%;">
+                <p class="card-header-title" style="color: <%= @fluck.settings.text_color %>">
                   About
                 </p>
 
@@ -65,18 +65,18 @@
                     <%= link_to 'Edit Fluck',
                                 edit_fluck_path(@fluck.nickname),
                                 class: 'mx-1',
-                                style: "color: #{@fluck.setting.text_color} !important;
+                                style: "color: #{@fluck.settings.text_color} !important;
                                         font-size: 14px;
                                         padding: 6px;
-                                        border: 1px #{@fluck.setting.text_color} solid;
+                                        border: 1px #{@fluck.settings.text_color} solid;
                                         border-radius: 2px;" %>
 
                     <a data-action="click->modal#open"
                        class="mx-1"
-                       style="color: <%= @fluck.setting.text_color %> !important;
+                       style="color: <%= @fluck.settings.text_color %> !important;
                               font-size: 14px;
                               padding: 6px;
-                              border: 1px <%= @fluck.setting.text_color %> solid;
+                              border: 1px <%= @fluck.settings.text_color %> solid;
                               border-radius: 2px;">
                       Customize Fluck
                     </a>
@@ -111,16 +111,16 @@
             </div>
 
             <% if @fluck.rules.size > 0 || policy(@fluck).edit_rules? %>
-              <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.setting.primary_color %> solid; border-radius: 5px;">
-                <header class="card-header" style="background-color: <%= @fluck.setting.primary_color %>; width: 100%;">
-                  <p class="card-header-title" style="color: <%= @fluck.setting.text_color %>">
+              <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.settings.primary_color %> solid; border-radius: 5px;">
+                <header class="card-header" style="background-color: <%= @fluck.settings.primary_color %>; width: 100%;">
+                  <p class="card-header-title" style="color: <%= @fluck.settings.text_color %>">
                     Rules
                   </p>
 
                   <% if policy(@fluck).edit_rules? %>
                     <span data-controller="modal" data-modal-allow-background-close="true" data-modal-allow-keyboard-close="true">
                       <span style="float: right; padding: 0.75rem 1rem;">
-                        <a data-action="click->modal#open" style="color: <%= @fluck.setting.text_color %> !important; font-size: 14px; padding: 6px;">
+                        <a data-action="click->modal#open" style="color: <%= @fluck.settings.text_color %> !important; font-size: 14px; padding: 6px;">
                           <i class="fas fa-plus-circle"></i>
                         </a>
                       </span>
@@ -160,7 +160,7 @@
               </div>
             <% end %>
 
-            <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.setting.primary_color %> solid; border-radius: 5px; position: sticky; top: 60px;">
+            <div class="card my-4" style="box-shadow: none; border: 2px <%= @fluck.settings.primary_color %> solid; border-radius: 5px; position: sticky; top: 60px;">
               <div class="card-content" style="padding: 1rem;">
                 <div class="content">
                   <%= render partial: 'partials/footer', locals: { type: 2 } %>

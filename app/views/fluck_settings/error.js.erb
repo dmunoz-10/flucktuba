@@ -1,5 +1,5 @@
 // Setting the errors
-<% @setting.errors.full_messages.each_with_index do |error, index| %>
+<% @settings.errors.full_messages.each_with_index do |error, index| %>
   <% if index == 0 %>
     document.getElementById('ul_error_settings')
             .innerHTML = '<li><%= error %></li>'

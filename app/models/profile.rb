@@ -8,6 +8,7 @@ class Profile < ApplicationRecord
 
   validate :one_profile_per_user
   validates :color_theme, presence: true
+  validates :primary_color, presence: true
 
   private
 
