@@ -2,6 +2,8 @@
 
 # Tuba Model
 class Tuba < ApplicationRecord
+  include Hashid::Rails
+
   before_validation :default_role
 
   belongs_to :user

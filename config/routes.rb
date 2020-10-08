@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :rules, except: %i[index new show]
 
     put '/settings', to: 'fluck_settings#update', as: 'settings', on: :member
+
+    resources :tubas, except: %i[new show]
   end
 
   get '/:id', to: 'flucks#show', as: :show_flucks
