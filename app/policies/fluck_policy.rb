@@ -39,4 +39,8 @@ class FluckPolicy < ApplicationPolicy
   def customize?
     record.owner?(user) || record.admin?(user)
   end
+
+  def see_tubas?
+    record.owner?(user) || record.admin?(user)
+  end
 end

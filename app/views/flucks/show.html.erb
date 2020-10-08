@@ -30,14 +30,10 @@
                 <div class="content" style="margin: 25px 0 0 0">
                   <strong class="title is-2 has-text-black"><%= @fluck.name %></strong>
 
-                  <% if @fluck.tuba(current_user) %>
-                    <% button_to fluck_tubas_path(@fluck.nickname), class: 'button ml-5', style: "background-color: #{@fluck.settings.primary_color}; color: #{@fluck.settings.primary_color};" do %>
-                      Join
-                    <% end %>
+                  <% if policy(@fluck.tubas.new).create? %>
+                    <a href="<%= fluck_tubas_path(@fluck.nickname) %>" class="button ml-5" style="background-color: <%= @fluck.settings.primary_color %>; color: <%= @fluck.settings.text_color %>;" data-method="post">Join</a>
                   <% else %>
-                    <% button_to fluck_tubas_path(@fluck.nickname, @fluck.tuba(current_user).to_param), class: 'button is-outlined ml-5', style: "background-color: white; color: #{@fluck.settings.primary_color}; border: 2px #{@fluck.settings.primary_color} solid;", data: { confirm: 'Are you sure?' }, method: :delete do %>
-                      Leave
-                    <% end %>
+                    <a href="<%= fluck_tuba_path(@fluck.nickname, @fluck.tuba(current_user).to_param) %>" class="button is-outlined ml-5" style="background-color: white; color: <%= @fluck.settings.primary_color %> !important; border: 2px <%= @fluck.settings.primary_color %> solid;" data-confirm="Are you sure?" data-method="delete">Leave</a>
                   <% end %>
                 </div>
 
@@ -101,7 +97,13 @@
                   <div class="tile is-ancestor mb-0 mt-2">
                     <div class="tile is-parent pb-1">
                       <div class="tile is-child">
-                        <%= pluralize(@fluck.tubas.count, 'tuba') %>
+                        <% if policy(@fluck).see_tubas? %>
+                          <%= link_to fluck_tubas_path(@fluck.nickname) do %>
+                            <%= pluralize(@fluck.tubas.count, @fluck.settings.tuba_name) %>
+                          <% end %>
+                        <% else %>
+                          <%= pluralize(@fluck.tubas.count, @fluck.settings.tuba_name) %>
+                        <% end %>
                       </div>
                       <div class="tile is-child">
                         30 posts

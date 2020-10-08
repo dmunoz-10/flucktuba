@@ -33,7 +33,7 @@ class TubasController < ApplicationController
     if @tuba.destroy
       redirect_to show_flucks_path(@fluck.nickname), notice: 'Left the fluck!'
     else
-      redirect_to show_flucks_path(@fluck.nickname), notice: 'You could not leave the fluck'
+      redirect_to show_flucks_path(@fluck.nickname), alert: 'You could not leave the fluck'
     end
   end
 

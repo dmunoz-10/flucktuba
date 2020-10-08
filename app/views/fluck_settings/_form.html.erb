@@ -48,4 +48,19 @@
       <span class="icon is-left"><i class="fas fa-tint"></i></span>
     </div>
   </div>
+
+  <div class="field is-horizontal my-4">
+    <div class="field-label is-normal">
+      <%= form.label :tuba_name, class: 'label' %>
+    </div>
+    <div class="field-body">
+      <div class="field has-text-left">
+        <p class="control has-icons-left">
+          <%= form.text_field :tuba_name, class: 'input', autofocus: true, autocomplete: "tuba_name", minimum: 3, maximum: 30 %>
+          <span class="icon is-left"><i class="fas fa-signature"></i></span>
+        </p>
+        <span><small>In singular</small></span>
+      </div>
+    </div>
+  </div>
 </div>

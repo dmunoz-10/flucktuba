@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     put '/settings', to: 'fluck_settings#update', as: 'settings', on: :member
 
-    resources :tubas, except: %i[new show]
+    resources :tubas, except: %i[new edit show]
   end
 
   get '/:id', to: 'flucks#show', as: :show_flucks

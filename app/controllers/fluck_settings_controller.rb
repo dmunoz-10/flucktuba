@@ -17,7 +17,7 @@ class FluckSettingsController < ApplicationController
 
   def fluck_settings_params
     params.require(:fluck_setting).permit(:banner_size, :image_shape,
-                                          :primary_color, :text_color)
+                                          :primary_color, :text_color, :tuba_name)
   end
 
   def set_fluck

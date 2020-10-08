@@ -5,7 +5,8 @@ class CreateFluckSettings < ActiveRecord::Migration[6.0]
       t.integer :banner_size, null: false, default: 0
       t.integer :image_shape, null: false, default: 0
       t.string :primary_color, null: false, default: '#4a86e8'
-      t.string :text_color, null: false, default: 'white'
+      t.string :text_color, null: false, default: '#ffffff'
+      t.string :tuba_name, null: false, default: 'tuba'
 
       t.timestamps
     end

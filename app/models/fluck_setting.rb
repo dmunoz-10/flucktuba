@@ -12,6 +12,7 @@ class FluckSetting < ApplicationRecord
   validates :image_shape, presence: true
   validates :primary_color, presence: true
   validates :text_color, presence: true
+  validates :tuba_name, presence: true, length: { minimum: 3, maximum: 30 }
 
   private
 
