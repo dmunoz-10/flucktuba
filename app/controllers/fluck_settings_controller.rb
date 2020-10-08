@@ -9,7 +9,7 @@ class FluckSettingsController < ApplicationController
     if @settings.update(fluck_settings_params)
       redirect_to show_flucks_path(@fluck.nickname)
     else
-      render :error
+      redirect_to show_flucks_path(@fluck.nickname), alert: 'Customization could not be updated!'
     end
   end
 

@@ -15,9 +15,11 @@ class FlucksController < ApplicationController
     @fluck = authorize Fluck.new(fluck_params)
     if @fluck.save
       current_user.tubas.create(fluck: @fluck, role: :owner)
-      render :show, notice: 'Fluck created!'
+      flash[:notice] = 'Fluck created!'
+      render :show
     else
-      render :edit, alert: 'It could not be created!'
+      flash[:alert] = 'It could not be created!'
+      render :new
     end
   end
 
@@ -27,17 +29,21 @@ class FlucksController < ApplicationController
 
   def update
     if @fluck.update(fluck_params)
-      render :show, notice: 'Fluck updated!'
+      flash[:notice] = 'Fluck updated!'
+      render :show
     else
-      render :edit, alert: 'It could not be updated!'
+      flash[:alert] = 'It could not be updated!'
+      render :edit
     end
   end
 
   def destroy
     if @fluck.destroy
-      redirect_to root_path, notice: 'Fluck Deleted!'
+      flash[:notice] = 'Fluck deleted!'
+      redirect_to root_path
     else
-      render :edit, alert: 'It could not be deleted!'
+      flash[:alert] = 'It could not be deleted!'
+      render :show
     end
   end
 

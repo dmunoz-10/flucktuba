@@ -149,7 +149,11 @@
 
                   <div class="content">
                     <div class="panel" id="panel_rules">
-                      <%= render partial: 'rules/rules', locals: { rules: @fluck.rules } %>
+                      <% if @fluck.rules.size == 0 %>
+                        <p class="has-text-centered pt-0 pb-0">There is no rules.</p>
+                      <% else %>
+                        <%= render partial: 'rules/rules', locals: { rules: @fluck.rules } %>
+                      <% end %>
                     </div>
 
                     <div data-controller="modal" data-modal-allow-background-close="true" data-modal-allow-keyboard-close="true">
