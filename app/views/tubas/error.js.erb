@@ -1,0 +1,18 @@
+<% id_message = 'message_error_tuba' %>
+
+// Setting the message
+document.querySelector('#<%= id_message %> h6').innerHTML = 'There was an error! try later'
+
+// Showing the message
+document.getElementById('<%= id_message %>').classList.remove('is-hidden')
+document.getElementById('<%= id_message %>').classList.add('fade-in')
+
+// Hiding the message after 5 seconds
+setTimeout(function() {
+  document.getElementById('<%= id_message %>').classList.add('fade-out')
+
+  // Hide the element after fade out transition
+  setTimeout(function() {
+    document.getElementById('<%= id_message %>').classList.add('is-hidden')
+  }, 2000)
+}, 5000)

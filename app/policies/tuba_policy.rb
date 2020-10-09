@@ -8,10 +8,6 @@ class TubaPolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    record.fluck.owner?(user) || record.fluck.admin?(user)
-  end
-
   def create?
     !record.fluck.tuba(user) && !record.fluck.banned?(user)
   end
