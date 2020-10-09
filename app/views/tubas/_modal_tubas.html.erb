@@ -1,0 +1,24 @@
+<div class="modal" data-target="modal.container">
+  <div class="modal-background" data-target="modal.background" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"></div>
+  <div class="modal-card">
+    <header class="modal-card-head" style="border: none;">
+      <p class="modal-card-title mb-0"><%= @fluck.settings.tuba_name.pluralize.capitalize %></p>
+      <button class="delete" aria-label="close" data-action="click->modal#close"></button>
+    </header>
+    <section class="modal-card-body">
+      <section class="hero is-danger mb-4 is-hidden" style="border-radius: 5px;" id="message_error_tuba">
+        <div class="hero-body" style="padding: 1rem 2rem;">
+          <div class="container">
+            <h6 class="title is-4"></h6>
+
+            <div class="content">
+              <ul class="ml-4" id="ul_error_tuba"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="fluck_tubas_list"></div>
+    </section>
+  </div>
+</div>

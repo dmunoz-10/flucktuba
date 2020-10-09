@@ -1,5 +1,5 @@
 <% rules.each_with_index do |rule, index| %>
-  <div style="border-bottom: 1px solid #ededed">
+  <div style="border-bottom: 1px solid <%= @fluck.settings.primary_color %>">
     <% if rule.description.present? %>
       <div data-controller="accordion">
         <a class="panel-block" data-action="click->accordion#toggle" style="border: none;">

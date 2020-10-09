@@ -10,11 +10,11 @@ module Tubas
     end
 
     def call
-      if @tuba.group.admin?(@current_user) && @role == 'owner'
+      if @tuba.fluck.admin?(@current_user) && @role == 'owner'
         return OpenStruct.new(success?: false, errors: 'Not authorized')
       end
 
-      @tuba.update(role: @role)
+      @tuba.update!(role: @role)
       remove_owner if @role == 'owner'
       OpenStruct.new(success?: true, errors: nil)
     rescue ArgumentError => e
@@ -24,7 +24,7 @@ module Tubas
     private
 
     def remove_owner
-      @current_user.tubas.find_by(group: @tuba.group).admin!
+      @current_user.tubas.find_by(fluck: @tuba.fluck).admin!
     end
   end
 end

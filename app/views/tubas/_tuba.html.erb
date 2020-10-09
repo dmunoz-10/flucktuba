@@ -1,0 +1,35 @@
+<div class="media">
+  <figure class="media-left ml-2 mr-2 mb-0">
+    <p class="image is-32x32">
+      <%= render partial: 'partials/user_avatar', locals: { user: tuba.user, size: 32 } %>
+    </p>
+  </figure>
+
+  <div class="media-content mt-1">
+    <div class="content">
+      <strong style="color: var(--color) !important"><%= tuba.user.username %></strong>
+      <%= render partial: 'tubas/role_tag', locals: { role: tuba.role } %>
+    </div>
+  </div>
+
+  <% if policy(tuba).update? %>
+    <div class="media-right" data-controller="save">
+      <%= form_with model: tuba, url: fluck_tuba_path(@fluck.nickname, tuba.to_param), method: 'put', data: { target: 'save.form' } do |form| %>
+        <div class="field">
+          <div class="control has-icons-left mt-1">
+            <div class="select">
+              <%= form.select :role,
+                              options_for_select(Tuba.roles.map { |k, _v| [k.capitalize, k] unless k == 'owner' && @fluck.admin?(current_user) }.compact,
+                                                 tuba.role),
+                              {}, required: true,
+                              data: { action: 'change->save#submit' } %>
+              <div class="icon is-small is-left">
+                <i class="fas fa-user-tag"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

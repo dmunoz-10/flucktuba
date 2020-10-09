@@ -21,7 +21,7 @@
 
         <%= render partial: 'fluck_settings/form', locals: { form: form, settings: @fluck.settings } %>
       </section>
-      <footer class="modal-card-foot">
+      <footer class="modal-card-foot py-3">
         <button class="button" data-action="click->modal#close" style="margin-left: auto;">Cancel</button>
         <%= form.button 'Update', class: 'button is-success' %>
       </footer>

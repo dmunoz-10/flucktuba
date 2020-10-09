@@ -10,7 +10,7 @@ export default class extends Controller {
     this.allowKeyboardClose = (this.data.get('allowKeyboardClose') || 'true') === 'true'
   }
 
-  open(e) {
+  open(e = null) {
     if (e) {
       e.preventDefault()
     }
@@ -19,7 +19,18 @@ export default class extends Controller {
     document.querySelector('html').classList.add(this.toggleClassesHtml)
   }
 
-  close(e) {
+  async openWithGetRequest(e) {
+    e.preventDefault()
+
+    await Rails.ajax({
+      url: e.srcElement.href,
+      type: 'get'
+    })
+
+    this.open()
+  }
+
+  close(e = null) {
     if (e) {
       e.preventDefault()
     }

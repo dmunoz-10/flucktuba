@@ -35,6 +35,26 @@ RSpec.describe FluckSetting, type: :model do
     end
   end
 
+  describe 'Tuba name validation' do
+    it 'must exist' do
+      fluck_setting = build(:fluck_setting, tuba_name: nil)
+      fluck_setting.valid?
+      expect(fluck_setting.errors[:tuba_name]).to include("can't be blank")
+    end
+
+    it 'must have 3 characters minimum' do
+      fluck_setting = build(:fluck_setting, tuba_name: 'a')
+      fluck_setting.valid?
+      expect(fluck_setting.errors[:tuba_name]).to include('is too short (minimum is 3 characters)')
+    end
+
+    it 'must have 30 characters maximum' do
+      fluck_setting = build(:fluck_setting, tuba_name: 'a' * 31)
+      fluck_setting.valid?
+      expect(fluck_setting.errors[:tuba_name]).to include('is too long (maximum is 30 characters)')
+    end
+  end
+
   describe 'Settings per fluck' do
     it 'must be unique' do
       fluck = create(:fluck)

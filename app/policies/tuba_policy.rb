@@ -17,7 +17,7 @@ class TubaPolicy < ApplicationPolicy
   end
 
   def update?
-    record.fluck.owner?(user) || record.fluck.admin?(user)
+    record.user != user && (record.fluck.owner?(user) || (record.fluck.admin?(user) && !record.owner?))
   end
 
   def destroy?

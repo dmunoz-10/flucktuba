@@ -21,8 +21,9 @@ class TubasController < ApplicationController
   end
 
   def update
-    result = Tubas::RoleManager.call(current_user, @tuba, params[:role])
+    result = Tubas::RoleManager.call(current_user, @tuba, params[:tuba][:role])
     if result.success?
+      @tubas = @fluck.tubas.includes(:user)
       render :index
     else
       render :error

@@ -98,9 +98,13 @@
                     <div class="tile is-parent pb-1">
                       <div class="tile is-child">
                         <% if policy(@fluck).see_tubas? %>
-                          <%= link_to fluck_tubas_path(@fluck.nickname) do %>
-                            <%= pluralize(@fluck.tubas.count, @fluck.settings.tuba_name) %>
-                          <% end %>
+                          <div data-controller="modal" data-modal-allow-background-close="true" data-modal-allow-keyboard-close="true">
+                            <%= link_to fluck_tubas_path(@fluck.nickname), data: { action: 'click->modal#openWithGetRequest' } do %>
+                              <%= pluralize(@fluck.tubas.count, @fluck.settings.tuba_name) %>
+                            <% end %>
+
+                            <%= render partial: 'tubas/modal_tubas' %>
+                          </div>
                         <% else %>
                           <%= pluralize(@fluck.tubas.count, @fluck.settings.tuba_name) %>
                         <% end %>

@@ -1,0 +1,12 @@
+<% case role  %>
+<% when 'owner' %>
+  <% class_tag = 'is-primary' %>
+<% when 'admin' %>
+  <% class_tag = 'is-info' %>
+<% when 'member' %>
+  <% class_tag = 'is-white' %>
+<% when 'banned' %>
+  <% class_tag = 'is-danger' %>
+<% end %>
+
+<span class="tag <%= class_tag %> ml-3"><%= role.capitalize %></span>
