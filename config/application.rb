@@ -34,5 +34,8 @@ module Flucktuba
 
     # Setting sidekiq as default job adapter
     config.active_job.queue_adapter = :sidekiq
+
+    # Load Subfolder Models
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
   end
 end

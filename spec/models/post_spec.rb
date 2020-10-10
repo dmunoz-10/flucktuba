@@ -3,14 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  describe 'Type validation' do
-    it 'must exist' do
-      post = build(:post, type: nil)
-      post.valid?
-      expect(post.errors[:type]).to include("can't be blank")
-    end
-  end
-
   describe 'Title validation' do
     it 'must exist' do
       post = build(:post, title: nil)

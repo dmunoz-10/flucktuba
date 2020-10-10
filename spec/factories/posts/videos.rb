@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :post do
+  factory :video do
     user { nil }
     fluck { nil }
     title { FFaker::Book.title }
