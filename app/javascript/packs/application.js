@@ -25,6 +25,17 @@ $(document).on('turbolinks:load', function() {
     $('.navbar-menu').toggleClass('is-active')
   })
 
+  $('.navbar-item').click(function () {
+    const hide = $(this).hasClass('is-active')
+    $('.navbar-item').removeClass('is-active')
+
+    if (hide) {
+      $(this).removeClass('is-active')
+    } else {
+      $(this).addClass('is-active')
+    }
+  })
+
   function change_theme_local_storage() {
     const theme = localStorage.getItem('theme')
     if (theme == 'dark') {

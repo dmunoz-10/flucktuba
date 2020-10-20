@@ -63,3 +63,17 @@ body::-webkit-scrollbar-thumb {
 		opacity: 0;
 	}
 }
+
+.navbar-item {
+  &.has-dropdown {
+    .navbar-dropdown {
+      display: none;
+    }
+
+    &.is-active {
+      .navbar-dropdown {
+        display: block;
+      }
+    }
+  }
+}

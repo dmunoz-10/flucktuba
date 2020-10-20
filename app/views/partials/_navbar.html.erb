@@ -1,6 +1,12 @@
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <%= link_to 'FluckTuba', root_path, class: 'navbar-item' %>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
   </div>
 
   <div id="navbar" class="navbar-menu">
@@ -8,10 +14,35 @@
       <a class="navbar-item" href="#">Explorer</a>
 
       <% if user_signed_in? %>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"><i class="fas fa-user"></i></a>
+        <div class="navbar-item has-dropdown">
+          <a class="navbar-link">
+            Create Post
+          </a>
 
-          <div class="navbar-dropdown" style="left: -75px !important">
+          <div class="navbar-dropdown">
+            <div data-controller="modal">
+              <a class="navbar-item" data-action="click->modal#open">Text</a>
+              <%= render 'texts/modal_create' %>
+            </div>
+
+            <div data-controller="modal">
+              <a class="navbar-item" data-action="click->modal#open">Image</a>
+              <%= render 'images/modal_create' %>
+            </div>
+
+            <div data-controller="modal">
+              <a class="navbar-item" data-action="click->modal#open">Video</a>
+              <%= render 'videos/modal_create' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-item has-dropdown">
+          <a class="navbar-link">
+            <%= render partial: 'partials/user_avatar', locals: { user: current_user, size: 24 } %>
+          </a>
+
+          <div class="navbar-dropdown is-right">
             <%= link_to 'My profile', user_path(current_user.username), class: 'navbar-item' %>
             <%= link_to 'Edit profile', edit_user_registration_path, class: 'navbar-item' %>
 

@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_10_09_045355) do
 
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "fluck_id", null: false
+    t.bigint "fluck_id"
     t.string "type"
     t.string "title", null: false
     t.text "description"
