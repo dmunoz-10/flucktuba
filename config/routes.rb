@@ -24,6 +24,10 @@ Rails.application.routes.draw do
     resources :tubas, except: %i[new edit show]
   end
 
+  resources :images, except: %i[index new edit]
+  resources :texts, except: %i[index new edit]
+  resources :videos, except: %i[index new edit]
+
   get '/:id', to: 'flucks#show', as: :show_flucks
 
   root to: 'pages#home'

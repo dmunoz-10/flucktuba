@@ -1,16 +1,18 @@
 <div class="modal" data-target="modal.container">
   <div class="modal-background" data-target="modal.background" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard"></div>
   <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close" data-action="click->modal#close"></button>
-    </header>
-    <section class="modal-card-body">
-      <!-- Content ... -->
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button" data-action="click->modal#close">Cancel</button>
-    </footer>
+    <%= form_with model: Text.new(user: @current_user), url: texts_path do |form| %>
+      <header class="modal-card-head">
+        <p class="modal-card-title">Create a post</p>
+        <button class="delete" aria-label="close" data-action="click->modal#close"></button>
+      </header>
+      <section class="modal-card-body">
+        <%= render partial: 'texts/form', locals: { form: form } %>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success">Create</button>
+        <button class="button" data-action="click->modal#close">Cancel</button>
+      </footer>
+    <% end %>
   </div>
 </div>

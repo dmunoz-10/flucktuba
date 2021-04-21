@@ -8,6 +8,10 @@ class Fluck < ApplicationRecord
   has_many :users, through: :tubas
   has_many :rules, dependent: :destroy
   has_one :settings, class_name: 'FluckSetting',foreign_key: 'fluck_id', dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :texts
+  has_many :images
+  has_many :videos
 
   has_one_attached :image
   has_one_attached :banner
